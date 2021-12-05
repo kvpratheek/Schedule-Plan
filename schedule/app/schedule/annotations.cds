@@ -3,12 +3,7 @@ using MaintenancePlan_API as service from '../../srv/plan-service';
 annotate service.MaintenancePlan with 
 @ UI : { 
     
-    SelectionFields  : [ 
-    {
-        $value: MaintenancePlan
-    }
-        
-    ],
+    SelectionFields  : [  MaintenancePlan  ],
     
     LineItem  : [
     {
