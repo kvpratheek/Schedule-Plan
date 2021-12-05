@@ -1,0 +1,2098 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+ <edmx:Reference Uri="https://host:port/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+  <edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="Aggregation"/>
+ </edmx:Reference>
+ <edmx:Reference Uri="https://host:port/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_ANALYTICS',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+  <edmx:Include Namespace="com.sap.vocabularies.Analytics.v1" Alias="Analytics"/>
+ </edmx:Reference>
+ <edmx:Reference Uri="https://host:port/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+  <edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/>
+  <edmx:Include Namespace="Org.OData.Capabilities.V1"/>
+ </edmx:Reference>
+ <edmx:Reference Uri="https://host:port/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CODELIST',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+  <edmx:Include Namespace="com.sap.vocabularies.CodeList.v1" Alias="SAP__CodeList"/>
+ </edmx:Reference>
+ <edmx:Reference Uri="https://host:port/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+  <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+ </edmx:Reference>
+ <edmx:Reference Uri="https://host:port/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+  <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+ </edmx:Reference>
+ <edmx:Reference Uri="https://host:port/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_MEASURES',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+  <edmx:Include Namespace="Org.OData.Measures.V1" Alias="Measures"/>
+ </edmx:Reference>
+ <edmx:Reference Uri="https://host:port/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+  <edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/>
+ </edmx:Reference>
+ <edmx:Reference Uri="https://host:port/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+  <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI"/>
+ </edmx:Reference>
+ <edmx:Reference Uri="https://host:port/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_VALIDATION',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+  <edmx:Include Namespace="Org.OData.Validation.V1" Alias="Validation"/>
+ </edmx:Reference>
+ <edmx:DataServices m:DataServiceVersion="2.0">
+  <Schema Namespace="cds_api_maintenanceplan" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+   <Annotation Term="Core.SchemaVersion" String="1.0.0" xmlns="http://docs.oasis-open.org/odata/ns/edm"/>
+   <EntityType Name="MaintenanceItemType" sap:label="Maintenance Item" sap:content-version="1">
+    <Key>
+     <PropertyRef Name="MaintenanceItem"/>
+    </Key>
+    <Property Name="MaintenanceItem" Type="Edm.String" Nullable="false" MaxLength="16" sap:display-format="UpperCase" sap:label="Maintenance Item" sap:quickinfo="Maintenance item">
+     <Documentation>
+      <Summary>Number identifying a maintenance item</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="MaintenanceItemDescription" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Maint. item text" sap:quickinfo="Item Short Text"/>
+    <Property Name="MaintenanceStrategy" Type="Edm.String" MaxLength="6" sap:display-format="UpperCase" sap:label="Maintenance Strategy">
+     <Documentation>
+      <Summary>Key identifying a maintenance strategy or cycle set.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="MaintenancePlanCategory" Type="Edm.String" Nullable="false" MaxLength="2" sap:display-format="UpperCase" sap:label="Maint. plan cat." sap:quickinfo="Maintenance plan category" sap:updatable="false">
+     <Documentation>
+      <Summary>Indicator that determines which maintenance call object the system generates for a due maintenance call. In addition, here you can define the number ranges, the view of the reference object (for example, equipment) and so on.</Summary>
+      <LongDescription>For a maintenance plan category, you can define the following maintenance call objects:Maintenance order or service orderMaintenance notification or service notificationMaintenance order and maintenance notification, or service order and service notification simultaneouslyService notification or order with reference to an outline agreementService entry sheetInspection lot for stability study</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="MaintenancePlanCallObject" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Call object" sap:quickinfo="Call object for maintenance plan" sap:creatable="false" sap:updatable="false">
+     <Documentation>
+      <Summary>Indicator which determines for the maintenance plan category which type of object a maintenance call creates, for example, a maintenance order or a service entry sheet.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="MaintenancePlan" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Maintenance Plan">
+     <Documentation>
+      <Summary>Number identifying a maintenance plan.</Summary>
+      <LongDescription>In create mode, you can either choose a number yourself or have a concecutive number assigned for you by the system, depending on the method preferred by your company,If you leave the field blank, the system will assign a number automatically.If you enter a number, it must be within the corresponding number range.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="MaintenancePlanItemPosition" Type="Edm.String" MaxLength="4" sap:display-format="NonNegative" sap:label="Position" sap:quickinfo="Item in the maintenance plan">
+     <Documentation>
+      <Summary>The item in the maintenance plan defines the sequence in which the maintenance items allocated to the maintenance plan are displayed.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="MaintenanceItemObjectList" Type="Edm.Int64" sap:label="Object list" sap:quickinfo="Object list number" sap:creatable="false" sap:updatable="false">
+     <Documentation>
+      <Summary>Number identifying the object list</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="FunctionalLocationLabelName" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:label="Functional Location" sap:quickinfo="Functional Location Label">
+     <Documentation>
+      <Summary>The label is used to identify a functional location from a user's point of view.</Summary>
+      <LongDescription>The functional location label can be changed where necessary. The system then automatically creates a labeling history and prevents historical labels from being reused without this first being checked. The labeling history also enables the interpretation of historical location labels in non-changeable documents outside the SAP System.You can assign one primary and several alternative labels to a functional location.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="Equipment" Type="Edm.String" MaxLength="18" sap:display-format="UpperCase" sap:label="Equipment" sap:quickinfo="Equipment Number">
+     <Documentation>
+      <Summary>Number by which a piece of equipment can be clearly identified.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="Assembly" Type="Edm.String" MaxLength="18" sap:display-format="UpperCase" sap:label="Assembly">
+     <Documentation>
+      <Summary>Number which uniquely identifies an assembly.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="AdditionalDeviceData" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:label="Addit. device data" sap:quickinfo="Additional Device Data">
+     <Documentation>
+      <Summary>40 character text field that you can use to enter additional data for the equipment, material or device.</Summary>
+      <LongDescription>The field is used purely for information purposes.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="TaskListType" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Task List Type">
+     <Documentation>
+      <Summary>Key which classifies task lists according to their functionality.</Summary>
+      <LongDescription>Routings are defined under the following task list types:RoutingsReference operation setsMaster recipeGeneral maintenance task listEquipment task listInspection planTask list for funct. location</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="TaskListGroup" Type="Edm.String" MaxLength="8" sap:display-format="UpperCase" sap:label="Group" sap:quickinfo="Key for Task List Group">
+     <Documentation>
+      <Summary>Key identifying a group.</Summary>
+      <LongDescription>You can use groups, for example, to identify two routings that have different production steps for one material.Enter the group to which you want to restrict the selection.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="TaskListGroupCounter" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Group Counter">
+     <Documentation>
+      <Summary>This key and the task list group uniquely identify a task list.</Summary>
+      <LongDescription>In Production Planning and Control, for example, it serves to identify alternative production processes in task lists and is used to make a distinction between similar task lists.The group counter can be used to identify different lot-size ranges, for example.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="OperationSystemCondition" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="System Condition">
+     <Documentation>
+      <Summary>Key for the sytem condition of an operational system</Summary>
+      <LongDescription>The system condition assigned to an operation determines, for example, whether the system must bein operationnot in operationduring execution.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="NumberOfTaskListExecutions" Type="Edm.Decimal" Precision="3" Scale="0" sap:label="Task list factor" sap:quickinfo="Execution factor for whole task list">
+     <Documentation>
+      <Summary>Number of repeated executions for all operations or sub-operations of a maintenance task list.</Summary>
+      <LongDescription>Use this field to specify how often the operations or sub-operations of the whole maintenance task list should be performed during order implementation.NoteFor more informationen on the execution factor, refer to execution factor.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="MaintNotifTskIsAutomlyDtmnd" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Determine tasks" sap:quickinfo="Automatic task determination in the notification">
+     <Documentation>
+      <Summary>Controls whether the system automatically generates tasks for the notification generated when generating a maintenance notification or service notification. The nature of the tasks determined by the system depends on the priority you specify in the maintenance item.</Summary>
+      <LongDescription>Set the indicator if the system should determine tasks when generating a notification.Define priorities in Customizing and the response profile in response time monitoring as well as the service profile.Assign the response profile, service profile and priority type to the notification type that is generated from the maintenance plan.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="MaintenancePlanningPlant" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Planning Plant" sap:quickinfo="Maintenance Planning Plant">
+     <Documentation>
+      <Summary>Key that identifies the maintenance planning plant.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="MaintenancePlannerGroup" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Maint. Planner Group" sap:quickinfo="Planner Group for Customer Service and Plant Maintenance">
+     <Documentation>
+      <Summary>Key that uniquely identifies the planner group in Customer Service or Plant Maintenance.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="MaintenanceOrderType" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Order Type">
+     <Documentation>
+      <Summary>Key that differentiates orders according to their purpose.</Summary>
+      <LongDescription>The order type contains a range of parameters which affect the way the order is processed.For example, using the order type, you can specifyThe number ranges to be used for the ordersWhich criteria are used when selecting a routingHow the order is to be costed.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="NotificationType" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Notification Type">
+     <Documentation>
+      <Summary>Key that enables notifications to be differentiated and grouped according to notification category, notification origin, and other criteria.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="MaintenanceActivityType" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="MaintActivityType" sap:quickinfo="Maintenance activity type">
+     <Documentation>
+      <Summary>Key which uniquely identifies the maintenance activity type.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="MainWorkCenter" Type="Edm.String" MaxLength="8" sap:display-format="UpperCase" sap:label="Work Center"/>
+    <Property Name="MainWorkCenterPlant" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Plant">
+     <Documentation>
+      <Summary>Key uniquely identifying a plant.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="MaintPriority" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Priority">
+     <Documentation>
+      <Summary>The key in this field indicates the importance of the processing of the order/notification.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="MaintPriorityType" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Priority Type" sap:creatable="false" sap:updatable="false">
+     <Documentation>
+      <Summary>Key that determines which priorities are allowed for a notification type.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="BusinessArea" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Business Area">
+     <Documentation>
+      <Summary>Key that uniquely identifies a business area.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="ImmediateReleaseIsBlocked" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Do Not Release" sap:quickinfo="Do Not Release Immediately">
+     <Documentation>
+      <Summary>Indicator that you can use in the maintenance plan item to control the "Release immediately" status for the order type.</Summary>
+      <LongDescription>If this indicator is set in the maintenance plan item when you schedule a maintenance plan, the "Release immediately" indicator from Customizing for the order type is affected as follows:Even if the "Release immediately" indicator is set for the order type, the order, which is generated from the maintenance plan item, is not released.Otherwise the indicator does not affect the default Customizing settings for the order type.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="Material" Type="Edm.String" MaxLength="18" sap:display-format="UpperCase" sap:label="Material" sap:quickinfo="Material Number">
+     <Documentation>
+      <Summary>Alphanumeric key uniquely identifying the material.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="SerialNumber" Type="Edm.String" MaxLength="18" sap:display-format="UpperCase" sap:label="Serial Number">
+     <Documentation>
+      <Summary>Specifies the serial number of a serialized material.</Summary>
+      <LongDescription>You can use the serial number to identify individual instances of a material for individual tracking purposes.A prerequisite for using a serial number in the logistical process is a serial number profile at material plant level.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="ServiceDocumentType" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Transaction Type" sap:quickinfo="Business Transaction Type">
+     <Documentation>
+      <Summary>Key that identifies a transaction type.</Summary>
+      <LongDescription>A transaction type defines the characteristics and attributes of a business transaction (for example, sales order, service request, sales call), and specifies the control attributes (for example, text determination procedure, partner determination procedure, status profile, organizational data profile).</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="ServiceContract" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Transaction ID">
+     <Documentation>
+      <Summary>Number that identifies the transaction document. It is unique for each business transaction category.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="ServiceContractItem" Type="Edm.String" MaxLength="6" sap:display-format="NonNegative" sap:label="Item Number in Doc." sap:quickinfo="Shortened Item Number in Document"/>
+    <Property Name="ServiceOrderTemplate" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Transaction ID">
+     <Documentation>
+      <Summary>Number that identifies the transaction document. It is unique for each business transaction category.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="ServiceDocumentPriority" Type="Edm.String" MaxLength="1" sap:display-format="NonNegative" sap:label="Priority" sap:quickinfo="Activity Priority">
+     <Documentation>
+      <Summary>Enter the priority of the document, for example, high or low.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="Product" Type="Edm.String" MaxLength="18" sap:display-format="UpperCase" sap:label="Product" sap:quickinfo="Product Number">
+     <Documentation>
+      <Summary>Alphanumeric key uniquely identifying the product.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="MaintenancePlant" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Maintenance Plant">
+     <Documentation>
+      <Summary>Number which clearly identifies a maintenance plant.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="AssetLocation" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Location" sap:quickinfo="Location of maintenance object">
+     <Documentation>
+      <Summary>The key in this field indicates a location within a plant.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="AssetRoom" Type="Edm.String" MaxLength="8" sap:display-format="UpperCase" sap:label="Room">
+     <Documentation>
+      <Summary>In this field you can designate a specific room for the asset.</Summary>
+      <LongDescription>The field is used for informational purposes, and can be used as a sort criterion in reports (for example, the inventory list).</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="PlantSection" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Plant Section">
+     <Documentation>
+      <Summary>Number which clearly identifies a plant section.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="WorkCenter" Type="Edm.String" MaxLength="8" sap:display-format="UpperCase" sap:label="Work Center"/>
+    <Property Name="ABCIndicator" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="ABC Indicator" sap:quickinfo="ABC Indicator for Technical Object">
+     <Documentation>
+      <Summary>An indicator that is assigned by the procedure of ABC analysis.</Summary>
+      <LongDescription>The following ABC indicators are possible:A - ImportantB - Less importantC - Relatively unimportantAccording to these criteria, "A" materials are those materials that are of greatest importance for the production operations of a company.Examples of use for ABC indicators are vendor master records, material  master records, and master records of technical objects.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="MaintObjectFreeDefinedAttrib" Type="Edm.String" MaxLength="30" sap:display-format="UpperCase" sap:label="Sort Field">
+     <Documentation>
+      <Summary>This field is for a company's internal use and is not checked by the SAP system.</Summary>
+      <LongDescription>You can enter a company-specific sort term in this field for the technical object. You can also define a matchcode for the field.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="CompanyCode" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Company Code">
+     <Documentation>
+      <Summary>The company code is an organizational unit within financial accounting.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="MasterFixedAsset" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Asset" sap:quickinfo="Main Asset Number">
+     <Documentation>
+      <Summary>This is the number which, together with the asset sub-number, identifies a fixed asset in Asset Accounting.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="FixedAsset" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Subnumber" sap:quickinfo="Asset Subnumber">
+     <Documentation>
+      <Summary>This is the number which, together with the main asset number, uniquely identifies a fixed asset in Asset Accounting.</Summary>
+      <LongDescription>Using the asset sub-number, you can:Provide for separate management of later acquisitions to assets.Represent complex fixed assets with their component parts.In contrast to the main asset number, the asset sub-number must be numerical.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="LocAcctAssgmtBusinessArea" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Business Area">
+     <Documentation>
+      <Summary>Key that uniquely identifies a business area.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="CostCenter" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Cost Center">
+     <Documentation>
+      <Summary>A key that uniquely identifies a cost center.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="ControllingArea" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Controlling Area" sap:creatable="false" sap:updatable="false">
+     <Documentation>
+      <Summary>Uniquely identifies a controlling area.</Summary>
+      <LongDescription>The controlling area is the highest organizational unit in Controlling.Whether controlling area and company code are in a 1:1 relationship or a 1:n relationship, the number of posting periods in both controlling area and company code(s) must be identical. However, special periods may vary.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="WBSElement" Type="Edm.String" MaxLength="24" sap:display-format="UpperCase" sap:label="WBS Element" sap:quickinfo="Work Breakdown Structure Element (WBS Element) Edited">
+     <Documentation>
+      <Summary>External 24-character name of an operative WBS element without a conversion routine stored in the domain.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="SettlementOrder" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Settlement Order" sap:quickinfo="Settlement order">
+     <Documentation>
+      <Summary>Order on which the PM order should be settled.</Summary>
+      <LongDescription>Order settlement can involve the settling of orders to other orders.When this is the case, a settlement order can be proposed from the technical object.This order is usually an internal order from Controlling (CO).</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="CycleSetSequence" Type="Edm.String" MaxLength="2" sap:display-format="NonNegative" sap:label="Cycle Set Sequence">
+     <Documentation>
+      <Summary>The cycle set sequence has various tasks in a multiple counter plan.</Summary>
+      <LongDescription>Grouping of multiple cycles into a setDetermination of the set sequence in the schedulingDetermination of maintenance item and date for which a call object is generatedIn a multiple counter plan, a maximum of 99 different cycle sets are possible. The number of sets automatically determines the sequence in the scheduling.By defining various cycle sets, a scheduling picture in the form of A - B - A - B , and so on, can be attained. By assigning individual maintenance items to "A" or "B", you can generate different tasks (see example).Here is an example of a vehicle maintenance. The vehicle should have a minor inspection after 15,000 kilometers or one year. After another 15,000 kilometers and/or two years, a major inspection should be performed.In a multiple counter plan you can define two cycle sets for this with the above cycles. Assign a maintenance item to each cycle set (for example, cycle set 1 and cycle set 2). One maintenance item has the minor inspection, the other the major inspection.Scheduling processThe scheduling takes cycle set 1 into account to calculate the first date, and only generates one call object for the maintenance item assigned to cycle set 1 for this date.Building on this date, the scheduling uses the cycles of cycle set 2 to determine the next planned date and also only generates one call object here for the corresponding maintenance item.After the second and thus highest cycle set were scheduled, the scheduling considers the first cycle set again.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="StandingOrderNumber" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Standing Order" sap:quickinfo="Standing order number">
+     <Documentation>
+      <Summary>Number of the standing order through which settlement of all the maintenance tasks will take place that do not have an individual order.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="CreatedByUser" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Created By" sap:quickinfo="Name of Person Responsible for Creating the Object" sap:creatable="false" sap:updatable="false"/>
+    <Property Name="CreationDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Created on" sap:quickinfo="Date of creation" sap:creatable="false" sap:updatable="false"/>
+    <Property Name="LastChangeDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Changed On" sap:quickinfo="Last Changed On" sap:creatable="false" sap:updatable="false"/>
+    <Property Name="LastChangedByUser" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Changed By" sap:quickinfo="Name of Person Who Changed Object" sap:creatable="false" sap:updatable="false"/>
+    <Property Name="LastChangeDateTime" Type="Edm.DateTimeOffset" Precision="0" sap:label="Short Time Stamp" sap:quickinfo="UTC Time Stamp in Short Form (YYYYMMDDhhmmss)" sap:creatable="false" sap:updatable="false">
+     <Documentation>
+      <Summary>The UTC time stamp is the date and time relative to UTC (Universal Coordinated Time).</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <NavigationProperty Name="to_LongText" Relationship="cds_api_maintenanceplan.assoc_840CD2D7DE151A3AEF37F9ACD7669146" FromRole="FromRole_assoc_840CD2D7DE151A3AEF37F9ACD7669146" ToRole="ToRole_assoc_840CD2D7DE151A3AEF37F9ACD7669146"/>
+    <NavigationProperty Name="to_MaintenanceItemCause" Relationship="cds_api_maintenanceplan.assoc_811F3BC6F9A34CE2853C2A2371BE04A2" FromRole="FromRole_assoc_811F3BC6F9A34CE2853C2A2371BE04A2" ToRole="ToRole_assoc_811F3BC6F9A34CE2853C2A2371BE04A2"/>
+    <NavigationProperty Name="to_MaintenanceItemReason" Relationship="cds_api_maintenanceplan.assoc_E149497EF94BDC05D23BEBDACA98D13E" FromRole="FromRole_assoc_E149497EF94BDC05D23BEBDACA98D13E" ToRole="ToRole_assoc_E149497EF94BDC05D23BEBDACA98D13E"/>
+    <NavigationProperty Name="to_MaintItemObjectListItem" Relationship="cds_api_maintenanceplan.assoc_4B710278141E00E72B3B05027BF25431" FromRole="FromRole_assoc_4B710278141E00E72B3B05027BF25431" ToRole="ToRole_assoc_4B710278141E00E72B3B05027BF25431"/>
+    <NavigationProperty Name="to_MaintPlanCallObjects" Relationship="cds_api_maintenanceplan.assoc_ED2EE33FB914C2F33785DC4F1E133B02" FromRole="FromRole_assoc_ED2EE33FB914C2F33785DC4F1E133B02" ToRole="ToRole_assoc_ED2EE33FB914C2F33785DC4F1E133B02"/>
+   </EntityType>
+   <EntityType Name="MaintenanceItemCauseType" sap:label="Maintenance Item Cause" sap:content-version="1">
+    <Key>
+     <PropertyRef Name="MaintenanceItem"/>
+     <PropertyRef Name="NmbrOfMaintComplianceItems"/>
+    </Key>
+    <Property Name="MaintenanceItem" Type="Edm.String" Nullable="false" MaxLength="16" sap:display-format="UpperCase" sap:label="Maintenance Item" sap:quickinfo="Maintenance item" sap:creatable="false" sap:updatable="false">
+     <Documentation>
+      <Summary>Number identifying a maintenance item</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="NmbrOfMaintComplianceItems" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="NonNegative" sap:label="Seq Num Compliance" sap:quickinfo="Sequential Number for Compliance" sap:creatable="false" sap:updatable="false"/>
+    <Property Name="MaintenanceComplianceGroupCode" Type="Edm.String" MaxLength="8" sap:display-format="UpperCase" sap:label="Code Group" sap:quickinfo="Compliance Group"/>
+    <Property Name="MaintenanceComplianceCode" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Compliance Code"/>
+    <Property Name="MaintenanceComplianceTypeCode" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Compliance Type" sap:quickinfo="Compliance Type: 'C'ause or 'R'eason" sap:creatable="false" sap:updatable="false"/>
+    <Property Name="MaintComplianceCatalogCode" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Compliance Catalog" sap:creatable="false" sap:updatable="false"/>
+    <Property Name="MaintComplianceDescription" Type="Edm.String" MaxLength="40" sap:label="Comp Descr." sap:quickinfo="Compliance Description"/>
+    <Property Name="MaintenancePackage" Type="Edm.String" MaxLength="2" sap:display-format="NonNegative" sap:label="Package" sap:quickinfo="Maintenance Package Number">
+     <Documentation>
+      <Summary>Consecutive number of the maintenance package in a maintenance strategy</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="MaintCmplRqIsLegallyBinding" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Legal Requirement" sap:quickinfo="Legally Binding Requirement">
+     <Documentation>
+      <Summary>This attribute indicates if the requirement is legally binding.</Summary>
+      <LongDescription>You can use this indicator for maintenance plan and maintenance item and it proposes whether a maintenance activity is mandatory for certain regulatory requirements. Detailed information about the regulatory requirement can be indicated using origin or document records attached to the reason or cause codes.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="MaintCmplRqOriginCode" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Origin" sap:quickinfo="Origin of Compliance Requirement"/>
+    <Property Name="CreatedByUser" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Created By" sap:quickinfo="Name of Person Responsible for Creating the Object" sap:creatable="false" sap:updatable="false"/>
+    <Property Name="CreationDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Created On" sap:quickinfo="Record Created On" sap:creatable="false" sap:updatable="false"/>
+    <Property Name="LastChangedByUser" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Changed By" sap:quickinfo="Name of Person Who Changed Object" sap:creatable="false" sap:updatable="false"/>
+    <Property Name="LastChangeDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Changed On" sap:quickinfo="Last Changed On" sap:creatable="false" sap:updatable="false"/>
+    <Property Name="LastChangeDateTime" Type="Edm.DateTimeOffset" Precision="0" sap:label="Changed Timestamp" sap:quickinfo="Changed Date and Time" sap:creatable="false" sap:updatable="false"/>
+    <NavigationProperty Name="to_MaintenanceItem" Relationship="cds_api_maintenanceplan.assoc_19DEDAADF4EBDAD8816485C9AEC01509" FromRole="FromRole_assoc_19DEDAADF4EBDAD8816485C9AEC01509" ToRole="ToRole_assoc_19DEDAADF4EBDAD8816485C9AEC01509"/>
+    <NavigationProperty Name="to_MaintenanceItemCauseText" Relationship="cds_api_maintenanceplan.assoc_9DA82BF69497585FD83C8B23088A6A54" FromRole="FromRole_assoc_9DA82BF69497585FD83C8B23088A6A54" ToRole="ToRole_assoc_9DA82BF69497585FD83C8B23088A6A54"/>
+   </EntityType>
+   <EntityType Name="MaintenanceItemCauseTextType" sap:label="Maintenance Item Cause Long Text" sap:content-version="1">
+    <Key>
+     <PropertyRef Name="MaintenanceItem"/>
+     <PropertyRef Name="NmbrOfMaintComplianceItems"/>
+     <PropertyRef Name="Language"/>
+    </Key>
+    <Property Name="MaintenanceItem" Type="Edm.String" Nullable="false" MaxLength="16" sap:display-format="UpperCase" sap:label="Maintenance Item" sap:quickinfo="Maintenance item" sap:creatable="false" sap:updatable="false">
+     <Documentation>
+      <Summary>Number identifying a maintenance item</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="NmbrOfMaintComplianceItems" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="NonNegative" sap:label="Seq Num Compliance" sap:quickinfo="Sequential Number for Compliance" sap:creatable="false" sap:updatable="false"/>
+    <Property Name="Language" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="Language Key" sap:updatable="false">
+     <Documentation>
+      <Summary>The language key indicates</Summary>
+      <LongDescription>- the language in which texts are displayed,- the language in which you enter texts,- the language in which the system prints texts.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="PlainLongText" Type="Edm.String" sap:label="Long Text"/>
+    <NavigationProperty Name="to_MaintenanceItem" Relationship="cds_api_maintenanceplan.assoc_33951E0F81898A5CDEF081C801F6816F" FromRole="FromRole_assoc_33951E0F81898A5CDEF081C801F6816F" ToRole="ToRole_assoc_33951E0F81898A5CDEF081C801F6816F"/>
+    <NavigationProperty Name="to_MaintenanceItemCause" Relationship="cds_api_maintenanceplan.assoc_C3F0FBB0C8DF0A7CE904ACB476F7553F" FromRole="FromRole_assoc_C3F0FBB0C8DF0A7CE904ACB476F7553F" ToRole="ToRole_assoc_C3F0FBB0C8DF0A7CE904ACB476F7553F"/>
+   </EntityType>
+   <EntityType Name="MaintenanceItemReasonType" sap:label="Maintenance Item Reason" sap:content-version="1">
+    <Key>
+     <PropertyRef Name="MaintenanceItem"/>
+     <PropertyRef Name="NmbrOfMaintComplianceItems"/>
+    </Key>
+    <Property Name="MaintenanceItem" Type="Edm.String" Nullable="false" MaxLength="16" sap:display-format="UpperCase" sap:label="Maintenance Item" sap:quickinfo="Maintenance item" sap:creatable="false" sap:updatable="false">
+     <Documentation>
+      <Summary>Number identifying a maintenance item</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="NmbrOfMaintComplianceItems" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="NonNegative" sap:label="Seq Num Compliance" sap:quickinfo="Sequential Number for Compliance" sap:creatable="false" sap:updatable="false"/>
+    <Property Name="MaintenanceComplianceGroupCode" Type="Edm.String" MaxLength="8" sap:display-format="UpperCase" sap:label="Code Group" sap:quickinfo="Compliance Group"/>
+    <Property Name="MaintenanceComplianceCode" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Compliance Code"/>
+    <Property Name="MaintenanceComplianceTypeCode" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Compliance Type" sap:quickinfo="Compliance Type: 'C'ause or 'R'eason" sap:creatable="false" sap:updatable="false"/>
+    <Property Name="MaintComplianceCatalogCode" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Compliance Catalog" sap:creatable="false" sap:updatable="false"/>
+    <Property Name="MaintComplianceDescription" Type="Edm.String" MaxLength="40" sap:label="Comp Descr." sap:quickinfo="Compliance Description"/>
+    <Property Name="MaintenancePackage" Type="Edm.String" MaxLength="2" sap:display-format="NonNegative" sap:label="Package" sap:quickinfo="Maintenance Package Number">
+     <Documentation>
+      <Summary>Consecutive number of the maintenance package in a maintenance strategy</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="MaintCmplRqIsLegallyBinding" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Legal Requirement" sap:quickinfo="Legally Binding Requirement">
+     <Documentation>
+      <Summary>This attribute indicates if the requirement is legally binding.</Summary>
+      <LongDescription>You can use this indicator for maintenance plan and maintenance item and it proposes whether a maintenance activity is mandatory for certain regulatory requirements. Detailed information about the regulatory requirement can be indicated using origin or document records attached to the reason or cause codes.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="MaintCmplRqOriginCode" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Origin" sap:quickinfo="Origin of Compliance Requirement"/>
+    <Property Name="CreatedByUser" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Created By" sap:quickinfo="Name of Person Responsible for Creating the Object" sap:creatable="false" sap:updatable="false"/>
+    <Property Name="CreationDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Created On" sap:quickinfo="Record Created On" sap:creatable="false" sap:updatable="false"/>
+    <Property Name="LastChangedByUser" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Changed By" sap:quickinfo="Name of Person Who Changed Object" sap:creatable="false" sap:updatable="false"/>
+    <Property Name="LastChangeDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Changed On" sap:quickinfo="Last Changed On" sap:creatable="false" sap:updatable="false"/>
+    <Property Name="LastChangeDateTime" Type="Edm.DateTimeOffset" Precision="0" sap:label="Changed Timestamp" sap:quickinfo="Changed Date and Time" sap:creatable="false" sap:updatable="false"/>
+    <NavigationProperty Name="to_MaintenanceItem" Relationship="cds_api_maintenanceplan.assoc_BD9243D582EABF5CC3618C596ED96155" FromRole="FromRole_assoc_BD9243D582EABF5CC3618C596ED96155" ToRole="ToRole_assoc_BD9243D582EABF5CC3618C596ED96155"/>
+    <NavigationProperty Name="to_MaintenanceItemReasonText" Relationship="cds_api_maintenanceplan.assoc_172563363C0F07BA9451856421F6666C" FromRole="FromRole_assoc_172563363C0F07BA9451856421F6666C" ToRole="ToRole_assoc_172563363C0F07BA9451856421F6666C"/>
+   </EntityType>
+   <EntityType Name="MaintenanceItemReasonTextType" sap:label="Maintenance Item Reason Long Text" sap:content-version="1">
+    <Key>
+     <PropertyRef Name="MaintenanceItem"/>
+     <PropertyRef Name="NmbrOfMaintComplianceItems"/>
+     <PropertyRef Name="Language"/>
+    </Key>
+    <Property Name="MaintenanceItem" Type="Edm.String" Nullable="false" MaxLength="16" sap:display-format="UpperCase" sap:label="Maintenance Item" sap:quickinfo="Maintenance item" sap:creatable="false" sap:updatable="false">
+     <Documentation>
+      <Summary>Number identifying a maintenance item</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="NmbrOfMaintComplianceItems" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="NonNegative" sap:label="Seq Num Compliance" sap:quickinfo="Sequential Number for Compliance" sap:creatable="false" sap:updatable="false"/>
+    <Property Name="Language" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="Language Key" sap:updatable="false">
+     <Documentation>
+      <Summary>The language key indicates</Summary>
+      <LongDescription>- the language in which texts are displayed,- the language in which you enter texts,- the language in which the system prints texts.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="PlainLongText" Type="Edm.String" sap:label="Long Text"/>
+    <NavigationProperty Name="to_MaintenanceItem" Relationship="cds_api_maintenanceplan.assoc_119699D72A495C26249C6BCE97F2BEA2" FromRole="FromRole_assoc_119699D72A495C26249C6BCE97F2BEA2" ToRole="ToRole_assoc_119699D72A495C26249C6BCE97F2BEA2"/>
+    <NavigationProperty Name="to_MaintenanceItemReason" Relationship="cds_api_maintenanceplan.assoc_20ED92DAB57ECE5E02B063901F1C04AD" FromRole="FromRole_assoc_20ED92DAB57ECE5E02B063901F1C04AD" ToRole="ToRole_assoc_20ED92DAB57ECE5E02B063901F1C04AD"/>
+   </EntityType>
+   <EntityType Name="MaintenanceItemTextType" sap:label="Maintenance Item Long Text" sap:content-version="1">
+    <Key>
+     <PropertyRef Name="MaintenanceItem"/>
+     <PropertyRef Name="Language"/>
+    </Key>
+    <Property Name="MaintenanceItem" Type="Edm.String" Nullable="false" MaxLength="16" sap:display-format="UpperCase" sap:label="Maintenance Item" sap:quickinfo="Maintenance item" sap:creatable="false" sap:updatable="false">
+     <Documentation>
+      <Summary>Number identifying a maintenance item</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="Language" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="Language Key" sap:updatable="false">
+     <Documentation>
+      <Summary>The language key indicates</Summary>
+      <LongDescription>- the language in which texts are displayed,- the language in which you enter texts,- the language in which the system prints texts.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="MaintenanceItemLongText" Type="Edm.String" sap:label="Long Text"/>
+    <NavigationProperty Name="to_MaintenanceItem" Relationship="cds_api_maintenanceplan.assoc_8AAE23A4C51579B3D9873D534B291C6B" FromRole="FromRole_assoc_8AAE23A4C51579B3D9873D534B291C6B" ToRole="ToRole_assoc_8AAE23A4C51579B3D9873D534B291C6B"/>
+   </EntityType>
+   <EntityType Name="MaintenancePlanType" sap:label="Maintenance Plan" sap:content-version="1">
+    <Key>
+     <PropertyRef Name="MaintenancePlan"/>
+    </Key>
+    <Property Name="MaintenancePlan" Type="Edm.String" Nullable="false" MaxLength="12" sap:display-format="UpperCase" sap:label="Maintenance Plan" sap:updatable="false">
+     <Documentation>
+      <Summary>Number identifying a maintenance plan.</Summary>
+      <LongDescription>In create mode, you can either choose a number yourself or have a concecutive number assigned for you by the system, depending on the method preferred by your company,If you leave the field blank, the system will assign a number automatically.If you enter a number, it must be within the corresponding number range.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="MaintenancePlanDesc" Type="Edm.String" MaxLength="40" sap:label="MaintPlanText" sap:quickinfo="Maintenance Plan Text"/>
+    <Property Name="CreationDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Created on" sap:quickinfo="Date of creation" sap:creatable="false" sap:updatable="false"/>
+    <Property Name="CreatedByUser" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Created By" sap:quickinfo="Name of Person Responsible for Creating the Object" sap:creatable="false" sap:updatable="false"/>
+    <Property Name="LastChangeDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Changed On" sap:quickinfo="Last Changed On" sap:creatable="false" sap:updatable="false"/>
+    <Property Name="LastChangedByUser" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Changed By" sap:quickinfo="Name of Person Who Changed Object" sap:creatable="false" sap:updatable="false"/>
+    <Property Name="MaintenanceStrategy" Type="Edm.String" MaxLength="6" sap:display-format="UpperCase" sap:label="Maintenance Strategy" sap:updatable="false">
+     <Documentation>
+      <Summary>Key identifying a maintenance strategy or cycle set.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="SchedulingDuration" Type="Edm.String" MaxLength="3" sap:display-format="NonNegative" sap:label="Scheduling period" sap:quickinfo="Scheduling Period">
+     <Documentation>
+      <Summary>You can use the scheduling period to determine the length of time for which the system creates maintenance calls during maintenance plan scheduling.</Summary>
+      <LongDescription>If you enter a scheduling period, waiting releases are created for this period. As a result, you should only set the scheduling period if you want long-term planning.However, when you start again or start in the cycle, despite the scheduling period, the system establishes that at least one date (either with the status "waiting" or "called up") is generated. Even if the status is less than the cycle used.If you do not enter a scheduling period, the system ensures that at least one waiting release exists. planning.If a maintenance plan contains monthly maintenance packages and calls are to be scheduled for the whole year, you must set the scheduling period to 365 (days) or 1 (year), depending on the unit that you have specified for the scheduling period.NoteYou can use the scheduling overview for long-term overviews.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="SchedulingDurationUnit" Type="Edm.String" MaxLength="3" sap:label="SchedIntervalUnit" sap:quickinfo="Unit for Scheduling Period" sap:semantics="unit-of-measure">
+     <Documentation>
+      <Summary>Unit for the scheduling period.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="NumberOfMaintenanceItems" Type="Edm.String" MaxLength="4" sap:display-format="NonNegative" sap:label="No. of MaintItems" sap:quickinfo="Number of maintenance items in the maintenance plan" sap:creatable="false" sap:updatable="false"/>
+    <Property Name="CycleModificationRatio" Type="Edm.Decimal" Precision="3" Scale="2" sap:label="Cycle ModificFactor" sap:quickinfo="Cycle modification factor">
+     <Documentation>
+      <Summary>You can use the cycle modification factor to change the cycle times of a maintenance strategy individually for each maintenance plan.</Summary>
+      <LongDescription>The cycle times that are valid according to the strategy are increased with a cycle modification factor greater than 1 and decreased with a cycle modification factor less than 1.Example:Cycle time according to strategy: 150 daysCycle modification factor         1.2Result: 150 * 1.2 ----&gt;   Cycle time of 180 days in maintenance planYou can use the cycle modification factor to adapt the general maintenance strategies to the particular requirements of a system, process or location.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="MaintPlanSchedgIndicator" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Scheduling indicator">
+     <Documentation>
+      <Summary>Within the preventive maintenance strategy, you can use different scheduling indicators, to define the type of scheduling for preventive maintenance plans or define a cycle set.</Summary>
+      <LongDescription>The following scheduling indicators are possible:TimePerformanceCycle set for multiple counter planTime-based maintenance plansYou schedule a preventive maintenance plan with a strategy containing a monthly package (for scheduling purposes a month is taken to be 30 days):TimeCurrent date:   04/10/1995Next planned date: 03/11/1995 -&gt; current date + 30 daysKey dateCurrent date:   04/10/1995Next planned date: 04/11/1995 -&gt; on the 4th day of each monthFactory calendarCurrent date:   04/10/1995Next planned date: 16/11/1995 -&gt; current date (or next workday)+ 30 workdaysPerformance-based maintenance plansYou can schedule a preventive maintenance plan on the basis of operating hours, kilometers traveled, and so on. The system calculates the planned date in respect of the following counter data:- annual estimate- current counter reading- current date</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="CallHorizonPercent" Type="Edm.String" MaxLength="3" sap:display-format="NonNegative" sap:label="Call horizon" sap:quickinfo="Call horizon for maintenance plan calls">
+     <Documentation>
+      <Summary>The call horizon determines when a maintenance call object, for example, a maintenance order should be generated for a maintenance call.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="CallHorizonInDays" Type="Edm.String" MaxLength="3" sap:display-format="NonNegative" sap:label="Call horizon" sap:quickinfo="Call horizon for maintenance plan calls">
+     <Documentation>
+      <Summary>The call horizon determines when a maintenance call object, for example, a maintenance order should be generated for a maintenance call.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="MaintenanceCallHorizonCalcType" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Calculation Type" sap:quickinfo="Calculation Type of Call Horizon">
+     <Documentation>
+      <Summary>Controls how the system calculates call points in maintenance plan scheduling. You can use the call horizon to define when the system creates a maintenance call object during a maintenance cycle. You can define the call horizon as follows:</Summary>
+      <LongDescription>' ' Call Horizon in Percent'1' Call Horizon in Days'2'  Call Horizon in Factory Calendar DaysCall Horizon in PercentIf you define the call horizon in percentage (' '), the system uses this percentage of the maintenance cycle to determine the times for the maintenance calls. If you define 0%, the maintenance call would take place immediately, and if you define 100% the maintenance call would be the planned date.Call Horizon in DaysIf you define the call horizon in days (1), the system generates maintenance call objects a specific number of days before the planned date. When scheduling the maintenance call, the system does not take weekends, holidays, or your company's vacation shutdown into account.Call Horizon in Factory Calendar DaysIf you define the call horizon in factory calendar days (2), the system generates maintenance call objects a specific number of working days before the planned date. The system bases scheduling on the assigned factory calendar and takes weekends, holidays, and your company's vacation shutdown into account.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="AuthorizationGroup" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="AuthorizGroup" sap:quickinfo="Technical Object Authorization Group">
+     <Documentation>
+      <Summary>Authorization group of a technical object in Plant Maintenance</Summary>
+      <LongDescription>With an entry in this field, you allocate the master record of this object to a group to which only certain users have access for processing the data. The users that have access authorization have the appropriate entry in their user master record.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="MaintenancePlanInternalID" Type="Edm.String" MaxLength="22" sap:display-format="UpperCase" sap:label="Object Number" sap:creatable="false" sap:updatable="false">
+     <Documentation>
+      <Summary>An object (order, project, cost center, ...) is identified uniquely by its object number within a client. The object number is used in tables, which cover all objects, for instance in status administration, cost collection.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="MaintenanceCall" Type="Edm.Int32" sap:label="MntPlan Call No." sap:quickinfo="Maintenance Plan Call Number" sap:creatable="false" sap:updatable="false">
+     <Documentation>
+      <Summary>Continual numbers of the maintenance call.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="MaintenancePlanCategory" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Maint. plan cat." sap:quickinfo="Maintenance plan category">
+     <Documentation>
+      <Summary>Indicator that determines which maintenance call object the system generates for a due maintenance call. In addition, here you can define the number ranges, the view of the reference object (for example, equipment) and so on.</Summary>
+      <LongDescription>For a maintenance plan category, you can define the following maintenance call objects:Maintenance order or service orderMaintenance notification or service notificationMaintenance order and maintenance notification, or service order and service notification simultaneouslyService notification or order with reference to an outline agreementService entry sheetInspection lot for stability study</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="MaintPlanFreeDefinedAttrib" Type="Edm.String" MaxLength="20" sap:display-format="UpperCase" sap:label="Sort field" sap:quickinfo="Sort field for maintenance plans">
+     <Documentation>
+      <Summary>You can use the sort field for selections in the list editing of maintenance plans, scheduling overviews in list format, and deadline monitoring.</Summary>
+      <LongDescription>You can define the input options for this field in Customizing for maintenance planning: Define sort fields for maintenance planIn plant 0001 you have an area "mechanical" and an area "electrical" and  want to schedule the maintenance plans for these areas separately.In Customizing, maintain the sort fields "0001 mechanical" and "0001 electrical" and assign the fields of the maintenance plans to the corresponding areas.In deadline monitoring you can use these sort fields to make precise schedules.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="BasicStartDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Start of cycle" sap:quickinfo="Start date">
+     <Documentation>
+      <Summary>Date at which the system should start the maintenance plan.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="SchedulingStartDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Start Date" sap:quickinfo="Start Date for Scheduling"/>
+    <Property Name="SchedulingStartTime" Type="Edm.Time" Precision="0" sap:label="Start Time" sap:quickinfo="Start Time for Scheduling"/>
+    <Property Name="MaintPlanStartCntrReadingValue" Type="Edm.String" MaxLength="22" sap:display-format="UpperCase" sap:label="StartCounterReading" sap:quickinfo="Start counter reading">
+     <Documentation>
+      <Summary>The counter reading which the maintenance schedule should be started.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="MaintPlnStrtBufDurationInDays" Type="Edm.String" MaxLength="3" sap:display-format="NonNegative" sap:label="Further scheduling" sap:quickinfo="Scheduling to reoccur when lead float reached"/>
+    <Property Name="MaintPlanStartBufferUnit" Type="Edm.String" MaxLength="3" sap:label="SchedIntervalUnit" sap:quickinfo="Unit for Scheduling Period" sap:semantics="unit-of-measure">
+     <Documentation>
+      <Summary>Unit for the scheduling period.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="FactoryCalendar" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Factory Calendar" sap:quickinfo="Factory calendar key">
+     <Documentation>
+      <Summary>Key that uniquely identifies the factory calendar that is valid for this plant.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="LateCompletionShiftInPercent" Type="Edm.String" MaxLength="3" sap:display-format="NonNegative" sap:label="Late Completion" sap:quickinfo="Shift Factor for Late Completion">
+     <Documentation>
+      <Summary>The shift factor in the event of late completion of a maintenance task defines the percentage of the shift to be applied to the calculation of the next date.</Summary>
+      <LongDescription>It is only applied when the variance between target and actual date is outside the tolerance range.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="LateCompletionTolerancePercent" Type="Edm.String" MaxLength="3" sap:display-format="NonNegative" sap:label="Tolerance (+)" sap:quickinfo="Tolerance for Late Completion (%)">
+     <Documentation>
+      <Summary>The tolerance in the case of late completion determines the time span in which positive variances between actual and planned date do not influence subsequent scheduling.</Summary>
+      <LongDescription>The tolerance is defined as a percentage rate of the smallest interval between the maintenance cycles of the maintenance strategy.The smallest interval is used so that a date shift does not automatically lead to a planned date being skipped.A maintenance strategy has two maintenance packages:Package 1: Every 30 daysPackage 2: Every 40 daysSmallest interval: 10 daysTolerance: 10 %If the maintenance package is performed no more than one day after the planned date, this variance will be disregarded for the determination of the next date.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="EarlyCompletionShiftInPercent" Type="Edm.String" MaxLength="3" sap:display-format="NonNegative" sap:label="EarlyCompletion" sap:quickinfo="Shift Factor for Early Completion">
+     <Documentation>
+      <Summary>The shift factor in the event of early completion of a maintenance task defines the percentage of the shift to be applied to the calculation of the next date.</Summary>
+      <LongDescription>It is only applied when the variance between target and actual date is outside the tolerance range.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="EarlyCompletionTolerancePct" Type="Edm.String" MaxLength="3" sap:display-format="NonNegative" sap:label="Tolerance (-)" sap:quickinfo="Tolerance for Early Completion (%)">
+     <Documentation>
+      <Summary>The tolerance in the case of early completion determines the time span in which negative variances between actual and planned date do not influence subsequent planning.</Summary>
+      <LongDescription>The tolerance is defined as a percentage rate of the smallest interval between the maintenance cycles of the maintenance strategy.The smallest interval is used so that a date shift does not automatically lead to a planned date being skipped.A maintenance strategy has two maintenance packages:Package 1: Every 30 daysPackage 2: Every 40 daysSmallest interval: 10 daysTolerance: 10 %If the maintenance package is performed no more than one day before the planned date, this variance will be disregarded for the determination of the next date.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="PrdcssrCallObjCompltnIsRqd" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Completion Requirmnt" sap:quickinfo="Only Create New Call Object After Completing Predecessor">
+     <Documentation>
+      <Summary>If you set this indicator, the system only generates the next call object once the preceding call object has been confirmed.</Summary>
+      <LongDescription>For call objects which already exist, this means the following:The next order is only created once the preceding order has been technically completed.The next notification is only created once the preceding notification has been completed.The next service entry sheet is only created once the preceding service entry sheet has been accepted.Alternatively, the following applies for all call objects:The next call object is only created once the last maintenance call has been confirmed for scheduling in the maintenance plan using the function Confirm.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="MaintPlanLogicalOperatorCode" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Operation type" sap:quickinfo="Indicator for OR or AND link">
+     <Documentation>
+      <Summary>Indicator for defining the relationship between the maintenance cycles</Summary>
+      <LongDescription>In the case of an OR operation, a maintenance call is due as soon as as one maintenance cycle finishes.In the case of an AND operation, a maintenance call is only due when all the maintenance cycles have finished.Define a link type for the maintenance cycles.A change in the link type is considered immediately for the next scheduling.You define a maintenance plan for aircraft maintenance containing the following cycles:Cycle 1: every 350 landingsCycle 2: every 1000 operating hoursCycle 3: every 170000 air milesThe aircraft flies for 1200 hours and 165000 miles, during which time it makes 340 landings.In the case of an OR operation, a maintenance date has been reached, as one of the three cycles has finished. Therefore the system creates a maintenance order.In the case of an AND operation, a maintenance date has not been reached. A maintenance order will not be created until the aircraft has flown another 5000 miles and made another 10 landings.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="SchedulingEndDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="End Date for Sched." sap:quickinfo="End Date for Scheduling">
+     <Documentation>
+      <Summary>The scheduled finish date of the maintenance plan.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="MaintPlanEndCntrReadingValue" Type="Edm.String" MaxLength="22" sap:display-format="UpperCase" sap:label="End Counter" sap:quickinfo="End Counter for Scheduling">
+     <Documentation>
+      <Summary>The scheduled final counter of the maintenance plan.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="LastChangeDateTime" Type="Edm.DateTimeOffset" Precision="0" sap:label="Short Time Stamp" sap:quickinfo="UTC Time Stamp in Short Form (YYYYMMDDhhmmss)">
+     <Documentation>
+      <Summary>The UTC time stamp is the date and time relative to UTC (Universal Coordinated Time).</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="MultipleCounterPlanShiftFactor" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Shift Factor MCP" sap:quickinfo="Shift Factor for Multiple Counter Plan">
+     <Documentation>
+      <Summary>Specifies whether the maintenance plan has already been converted internally to the new function "Shift Factors for Multiple Counter Plan".</Summary>
+      <LongDescription>This function is executed in the background when you change or schedule a maintenance plan.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="MaintenanceLeadFloatInDays" Type="Edm.String" MaxLength="3" sap:display-format="NonNegative" sap:label="Lead float" sap:quickinfo="Lead Float in Days">
+     <Documentation>
+      <Summary>The number of days that you specify for the preliminary buffer affects the order start date in the order and the deadline is deferred accordingly.</Summary>
+      <LongDescription>The calculated order start date is a default value that can be overwritten by the order scheduling value. This is dependent on the setting in Customizing.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="MaintenancePlanCallObject" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Call object" sap:quickinfo="Call object for maintenance plan">
+     <Documentation>
+      <Summary>Indicator which determines for the maintenance plan category which type of object a maintenance call creates, for example, a maintenance order or a service entry sheet.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="MaintenancePlanSystemStatus" Type="Edm.String" MaxLength="30" sap:label="Text" sap:heading="" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false">
+     <Documentation>
+      <Summary>Meaning</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <NavigationProperty Name="to_Item" Relationship="cds_api_maintenanceplan.assoc_15F5EB5C6E38373703381E82315FF47A" FromRole="FromRole_assoc_15F5EB5C6E38373703381E82315FF47A" ToRole="ToRole_assoc_15F5EB5C6E38373703381E82315FF47A"/>
+    <NavigationProperty Name="to_LongText" Relationship="cds_api_maintenanceplan.assoc_A82C2BFE56D1D9B5A93F4BE03599B7A8" FromRole="FromRole_assoc_A82C2BFE56D1D9B5A93F4BE03599B7A8" ToRole="ToRole_assoc_A82C2BFE56D1D9B5A93F4BE03599B7A8"/>
+    <NavigationProperty Name="to_MaintenanceCycle" Relationship="cds_api_maintenanceplan.assoc_808114E364F980B05C0B20FD95226729" FromRole="FromRole_assoc_808114E364F980B05C0B20FD95226729" ToRole="ToRole_assoc_808114E364F980B05C0B20FD95226729"/>
+    <NavigationProperty Name="to_MaintPlanClfnClass" Relationship="cds_api_maintenanceplan.assoc_633A0222D96034C87156B01A5868C93A" FromRole="FromRole_assoc_633A0222D96034C87156B01A5868C93A" ToRole="ToRole_assoc_633A0222D96034C87156B01A5868C93A"/>
+    <NavigationProperty Name="to_Schedules" Relationship="cds_api_maintenanceplan.assoc_9FE10E86AA0F60BBCC86BCFF064ABC38" FromRole="FromRole_assoc_9FE10E86AA0F60BBCC86BCFF064ABC38" ToRole="ToRole_assoc_9FE10E86AA0F60BBCC86BCFF064ABC38"/>
+    <NavigationProperty Name="to_StrategyCycle" Relationship="cds_api_maintenanceplan.assoc_2C7A7DADB69F4F62811F79D0C3A0D6E6" FromRole="FromRole_assoc_2C7A7DADB69F4F62811F79D0C3A0D6E6" ToRole="ToRole_assoc_2C7A7DADB69F4F62811F79D0C3A0D6E6"/>
+   </EntityType>
+   <EntityType Name="MaintenancePlanCycleType" sap:label="Maintenance Plan Cycle" sap:content-version="1">
+    <Key>
+     <PropertyRef Name="MaintenancePlan"/>
+     <PropertyRef Name="MaintenancePlanCycle"/>
+    </Key>
+    <Property Name="MaintenancePlan" Type="Edm.String" Nullable="false" MaxLength="12" sap:display-format="UpperCase" sap:label="Maintenance Plan" sap:creatable="false" sap:updatable="false">
+     <Documentation>
+      <Summary>Number identifying a maintenance plan.</Summary>
+      <LongDescription>In create mode, you can either choose a number yourself or have a concecutive number assigned for you by the system, depending on the method preferred by your company,If you leave the field blank, the system will assign a number automatically.If you enter a number, it must be within the corresponding number range.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="MaintenancePlanCycle" Type="Edm.String" Nullable="false" MaxLength="2" sap:display-format="NonNegative" sap:label="Counter" sap:quickinfo="Counter in Control Tables" sap:creatable="false" sap:updatable="false"/>
+    <Property Name="MaintenanceStrategy" Type="Edm.String" MaxLength="6" sap:display-format="UpperCase" sap:label="Maintenance Strategy">
+     <Documentation>
+      <Summary>Key identifying a maintenance strategy or cycle set.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="CycleSetSequence" Type="Edm.String" MaxLength="2" sap:display-format="NonNegative" sap:label="Cycle Set Sequence">
+     <Documentation>
+      <Summary>The cycle set sequence has various tasks in a multiple counter plan.</Summary>
+      <LongDescription>Grouping of multiple cycles into a setDetermination of the set sequence in the schedulingDetermination of maintenance item and date for which a call object is generatedIn a multiple counter plan, a maximum of 99 different cycle sets are possible. The number of sets automatically determines the sequence in the scheduling.By defining various cycle sets, a scheduling picture in the form of A - B - A - B , and so on, can be attained. By assigning individual maintenance items to "A" or "B", you can generate different tasks (see example).Here is an example of a vehicle maintenance. The vehicle should have a minor inspection after 15,000 kilometers or one year. After another 15,000 kilometers and/or two years, a major inspection should be performed.In a multiple counter plan you can define two cycle sets for this with the above cycles. Assign a maintenance item to each cycle set (for example, cycle set 1 and cycle set 2). One maintenance item has the minor inspection, the other the major inspection.Scheduling processThe scheduling takes cycle set 1 into account to calculate the first date, and only generates one call object for the maintenance item assigned to cycle set 1 for this date.Building on this date, the scheduling uses the cycles of cycle set 2 to determine the next planned date and also only generates one call object here for the corresponding maintenance item.After the second and thus highest cycle set were scheduled, the scheduling considers the first cycle set again.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="MaintPlanCycRcrrcIntervalQty" Type="Edm.Double" sap:unit="MaintPlanCycRcrrcIntervalUnit" sap:label="Cycle Interval" sap:quickinfo="Maintenance Plan Cycle Interval"/>
+    <Property Name="MaintPlanCycRcrrcIntervalUnit" Type="Edm.String" MaxLength="3" sap:label="Unit" sap:quickinfo="Unit for the performance of maintenance tasks" sap:semantics="unit-of-measure">
+     <Documentation>
+      <Summary>Unit which determines the basis on which the scheduling calculation should be made.</Summary>
+      <LongDescription>For time-based and performance-based maintenance plans, the individual maintenance packages can only use different features if their dimension is the same as the unit for the maintenance strategy.NoteIf you use the units "month" and "year" for time strategies for maintenance packages, this can lead to problems in the use of hierarchies.The reason for this lies in the length of the month:1 month = 30 days =&gt; 1 year = 360 daysBut: 1 calendar year = 365 (366) days1st package: 1Y (Y = yearly)  =&gt; due after 360 days2nd package: 1M (M = monthly) =&gt; 12th monthly package due after 365 daysThe 12th monthly package for the monthly strategy and the yearly strategy do not fall on the same date.NoteSAP therefore recommends that for the combination of monthly and yearly packages, the yearly packages should be defined using the unit "month" and not the unit "year". This means:1st package: 12M (yearly)2nd package:  1M (monthly)</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="MaintPlanCycleDesc" Type="Edm.String" MaxLength="30" sap:label="Cycle text" sap:quickinfo="Text for maintenance package/cycle (time/performance)">
+     <Documentation>
+      <Summary>You can use this text to describe a maintenance cycle.</Summary>
+      <LongDescription>Within a maintenance strategy, you can set out the description for a maintenance package.Possible examples could be:MonthlyEvery 100 kilometers</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="MeasuringPoint" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Measuring point" sap:quickinfo="Measuring Point">
+     <Documentation>
+      <Summary>Key identifying the measuring point</Summary>
+      <LongDescription>This key is assigned internally by the system when you create the measuring point.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="MaintPlanCycleStartOffsetValue" Type="Edm.Double" sap:label="Maintenance Plan Cycle Offset" sap:quickinfo="Maintenance Plan Cycle Interval"/>
+    <Property Name="MaintCycleNextPlndCntrRdng" Type="Edm.Double" sap:unit="MaintPlanCycRcrrcIntervalUnit" sap:label="Next TL cntr reading" sap:quickinfo="Next planned counter reading"/>
+    <Property Name="MaintenancePlanCycleIsInactive" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Inactive indic." sap:quickinfo="Indicator: event scheduling inactive">
+     <Documentation>
+      <Summary>Indicator showing whether a maintenance cycle is active or inactive.</Summary>
+      <LongDescription>This indicator controls whether a maintenance cycle is taken into account during scheduling. If this field has been selected, the maintenance cycle will be ignored.If you are in create or change mode, carry out one of the following options:Select this field for each cycle that you want to deactivateDeselect this field for each cycle that you want to reactivate</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="CycleSetSequenceRepeatFactor" Type="Edm.String" MaxLength="2" sap:display-format="NonNegative" sap:label="RepFactor Set" sap:quickinfo="Repeat Factor for Cycle Set Sequence">
+     <Documentation>
+      <Summary>Determines how often in a sequence a cycle set is used to calculate a date, before the system changes to the next cycle set.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <NavigationProperty Name="to_MaintenancePlan" Relationship="cds_api_maintenanceplan.assoc_BD949FC3A4E1A08D66ACD56BBDD8EAAD" FromRole="FromRole_assoc_BD949FC3A4E1A08D66ACD56BBDD8EAAD" ToRole="ToRole_assoc_BD949FC3A4E1A08D66ACD56BBDD8EAAD"/>
+   </EntityType>
+   <EntityType Name="MaintenancePlanScheduleType" sap:label="Scheduled Calls of Maintenance Plan" sap:content-version="1">
+    <Key>
+     <PropertyRef Name="MaintenancePlan"/>
+     <PropertyRef Name="MaintenancePlanCallNumber"/>
+     <PropertyRef Name="MaintenancePackage"/>
+    </Key>
+    <Property Name="MaintenancePlan" Type="Edm.String" Nullable="false" MaxLength="12" sap:display-format="UpperCase" sap:label="Maintenance Plan">
+     <Documentation>
+      <Summary>Number identifying a maintenance plan.</Summary>
+      <LongDescription>In create mode, you can either choose a number yourself or have a concecutive number assigned for you by the system, depending on the method preferred by your company,If you leave the field blank, the system will assign a number automatically.If you enter a number, it must be within the corresponding number range.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="MaintenancePlanCallNumber" Type="Edm.Int32" Nullable="false" sap:label="MntPlan Call No." sap:quickinfo="Maintenance Plan Call Number">
+     <Documentation>
+      <Summary>Continual numbers of the maintenance call.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="MaintenancePackage" Type="Edm.String" Nullable="false" MaxLength="2" sap:display-format="NonNegative" sap:label="Package" sap:quickinfo="Maintenance Package Number">
+     <Documentation>
+      <Summary>Consecutive number of the maintenance package in a maintenance strategy</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="SchedulingType" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Scheduling type">
+     <Documentation>
+      <Summary>Indicator that specifies how the maintenance date was determined.</Summary>
+      <LongDescription>There are four scheduling types:The maintenance plan wasrestartedscheduled by the scheduling functioncalled manuallyrescheduled in the current cycle</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="SchedulingStatus" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Single-Character Flag" sap:heading=""/>
+    <Property Name="MeasuringPoint" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Measuring point" sap:quickinfo="Measuring Point">
+     <Documentation>
+      <Summary>Key identifying the measuring point</Summary>
+      <LongDescription>This key is assigned internally by the system when you create the measuring point.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="MaintenanceTaskPerformanceUnit" Type="Edm.String" MaxLength="3" sap:label="Unit" sap:quickinfo="Unit for the performance of maintenance tasks" sap:semantics="unit-of-measure">
+     <Documentation>
+      <Summary>Unit which determines the basis on which the scheduling calculation should be made.</Summary>
+      <LongDescription>For time-based and performance-based maintenance plans, the individual maintenance packages can only use different features if their dimension is the same as the unit for the maintenance strategy.NoteIf you use the units "month" and "year" for time strategies for maintenance packages, this can lead to problems in the use of hierarchies.The reason for this lies in the length of the month:1 month = 30 days =&gt; 1 year = 360 daysBut: 1 calendar year = 365 (366) days1st package: 1Y (Y = yearly)  =&gt; due after 360 days2nd package: 1M (M = monthly) =&gt; 12th monthly package due after 365 daysThe 12th monthly package for the monthly strategy and the yearly strategy do not fall on the same date.NoteSAP therefore recommends that for the combination of monthly and yearly packages, the yearly packages should be defined using the unit "month" and not the unit "year". This means:1st package: 12M (yearly)2nd package:  1M (monthly)</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="MaintenanceCallNextPlannedDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Planned Date" sap:quickinfo="Next planned date">
+     <Documentation>
+      <Summary>The next planned date describes the time at which a maintenance task, for example, a maintenance order is to be executed.</Summary>
+      <LongDescription>NoteIn the case of precise key date scheduling, if there is a date at which no factory calendar is maintained, the system determines a planned date on the basis of the Gregorian calendar.The planned date is affected by the float.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="MaintenanceCallDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Call date">
+     <Documentation>
+      <Summary>Date on which the system creates a maintenance call object, for example, a maintenance order or a service entry sheet from the maintenance call.</Summary>
+      <LongDescription>As soon as the system has created a maintenance call object, this date is no longer displayed.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="CompletionDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Completion date" sap:quickinfo="Date of last completion in maintenance plan">
+     <Documentation>
+      <Summary>Date on which the maintenance date was completed. The date entered here</Summary>
+      <LongDescription>is used as the basis for the further scheduling of the maintenance plan.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="CompletionTime" Type="Edm.Time" Precision="0"/>
+    <Property Name="CycleSetSequence" Type="Edm.String" MaxLength="2" sap:display-format="NonNegative" sap:label="Cycle Set Sequence">
+     <Documentation>
+      <Summary>The cycle set sequence has various tasks in a multiple counter plan.</Summary>
+      <LongDescription>Grouping of multiple cycles into a setDetermination of the set sequence in the schedulingDetermination of maintenance item and date for which a call object is generatedIn a multiple counter plan, a maximum of 99 different cycle sets are possible. The number of sets automatically determines the sequence in the scheduling.By defining various cycle sets, a scheduling picture in the form of A - B - A - B , and so on, can be attained. By assigning individual maintenance items to "A" or "B", you can generate different tasks (see example).Here is an example of a vehicle maintenance. The vehicle should have a minor inspection after 15,000 kilometers or one year. After another 15,000 kilometers and/or two years, a major inspection should be performed.In a multiple counter plan you can define two cycle sets for this with the above cycles. Assign a maintenance item to each cycle set (for example, cycle set 1 and cycle set 2). One maintenance item has the minor inspection, the other the major inspection.Scheduling processThe scheduling takes cycle set 1 into account to calculate the first date, and only generates one call object for the maintenance item assigned to cycle set 1 for this date.Building on this date, the scheduling uses the cycles of cycle set 2 to determine the next planned date and also only generates one call object here for the corresponding maintenance item.After the second and thus highest cycle set were scheduled, the scheduling considers the first cycle set again.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="MaintCallCompltnCntrRdng" Type="Edm.Double" sap:label="CompConfReading" sap:quickinfo="Counter reading confirmation">
+     <Documentation>
+      <Summary>extrapolated counter reading for completion confirmation date</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="MaintenanceCallIsOutstanding" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Scheduling status" sap:quickinfo="Scheduling status: call outstanding"/>
+    <Property Name="MaintCallIsInvokedOnPlndDate" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Scheduling status" sap:quickinfo="Scheduling status: planned date called"/>
+    <Property Name="MaintCallHorizonIsNotReached" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Scheduling status" sap:quickinfo="Scheduling status: call horizon not reached"/>
+    <Property Name="MaintPlanLastScheduledDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Last call on" sap:quickinfo="Date of the call">
+     <Documentation>
+      <Summary>Date at which the  maintenance plan was last scheduled.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="ReleasedByUserName" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Called by" sap:quickinfo="Name of the person who made the call"/>
+    <Property Name="MaintPlnCnctntdDuePackagesTxt" Type="Edm.String" MaxLength="256"/>
+    <NavigationProperty Name="to_MaintenancePlanCallObjects" Relationship="cds_api_maintenanceplan.assoc_2905A8C19B8A8AE585ED51AF11725FF9" FromRole="FromRole_assoc_2905A8C19B8A8AE585ED51AF11725FF9" ToRole="ToRole_assoc_2905A8C19B8A8AE585ED51AF11725FF9"/>
+   </EntityType>
+   <EntityType Name="MaintenancePlanTextType" sap:label="Maintenance Plan Long Text" sap:content-version="1">
+    <Key>
+     <PropertyRef Name="MaintenancePlan"/>
+     <PropertyRef Name="Language"/>
+    </Key>
+    <Property Name="MaintenancePlan" Type="Edm.String" Nullable="false" MaxLength="12" sap:display-format="UpperCase" sap:label="Maintenance Plan" sap:creatable="false" sap:updatable="false">
+     <Documentation>
+      <Summary>Number identifying a maintenance plan.</Summary>
+      <LongDescription>In create mode, you can either choose a number yourself or have a concecutive number assigned for you by the system, depending on the method preferred by your company,If you leave the field blank, the system will assign a number automatically.If you enter a number, it must be within the corresponding number range.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="Language" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="Language Key" sap:updatable="false">
+     <Documentation>
+      <Summary>The language key indicates</Summary>
+      <LongDescription>- the language in which texts are displayed,- the language in which you enter texts,- the language in which the system prints texts.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="MaintenancePlanLongText" Type="Edm.String" sap:label="Long Text"/>
+    <NavigationProperty Name="to_MaintenancePlan" Relationship="cds_api_maintenanceplan.assoc_63AF618F9A4C25A022C7E6CD12C1C806" FromRole="FromRole_assoc_63AF618F9A4C25A022C7E6CD12C1C806" ToRole="ToRole_assoc_63AF618F9A4C25A022C7E6CD12C1C806"/>
+   </EntityType>
+   <EntityType Name="MaintItemObjectListItemType" sap:label="Maintenance Item Object List Item" sap:content-version="1">
+    <Key>
+     <PropertyRef Name="MaintenanceItem"/>
+     <PropertyRef Name="MaintenanceItemObjectList"/>
+     <PropertyRef Name="MaintenanceObjectListItem"/>
+    </Key>
+    <Property Name="MaintenanceItem" Type="Edm.String" Nullable="false" MaxLength="16" sap:display-format="UpperCase" sap:label="Maintenance Item" sap:quickinfo="Maintenance item" sap:creatable="false" sap:updatable="false">
+     <Documentation>
+      <Summary>Number identifying a maintenance item</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="MaintenanceItemObjectList" Type="Edm.Int64" Nullable="false" sap:label="Object list" sap:quickinfo="Object list number" sap:creatable="false" sap:updatable="false">
+     <Documentation>
+      <Summary>Number identifying the object list</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="MaintenanceObjectListItem" Type="Edm.Int32" Nullable="false" sap:label="Object counters" sap:quickinfo="Object list counters" sap:creatable="false" sap:updatable="false">
+     <Documentation>
+      <Summary>The object counter is a consecutive number that identifies the objects in the object list.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="MaintObjectListItemSequence" Type="Edm.String" MaxLength="20" sap:display-format="UpperCase" sap:label="Sort field" sap:quickinfo="Object list sort field">
+     <Documentation>
+      <Summary>You can use the sort field to sort the various objects in an object list in ascending order according to your own criteria.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="Equipment" Type="Edm.String" MaxLength="18" sap:display-format="UpperCase" sap:label="Equipment" sap:quickinfo="Equipment Number">
+     <Documentation>
+      <Summary>Number by which a piece of equipment can be clearly identified.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="FunctionalLocationLabelName" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:label="Functional Location" sap:quickinfo="Functional Location Label">
+     <Documentation>
+      <Summary>The label is used to identify a functional location from a user's point of view.</Summary>
+      <LongDescription>The functional location label can be changed where necessary. The system then automatically creates a labeling history and prevents historical labels from being reused without this first being checked. The labeling history also enables the interpretation of historical location labels in non-changeable documents outside the SAP System.You can assign one primary and several alternative labels to a functional location.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="Assembly" Type="Edm.String" MaxLength="18" sap:display-format="UpperCase" sap:label="Assembly">
+     <Documentation>
+      <Summary>Number which uniquely identifies an assembly.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="Material" Type="Edm.String" MaxLength="18" sap:display-format="UpperCase" sap:label="Material" sap:quickinfo="Material Number">
+     <Documentation>
+      <Summary>Alphanumeric key uniquely identifying the material.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="SerialNumber" Type="Edm.String" MaxLength="18" sap:display-format="UpperCase" sap:label="Serial Number">
+     <Documentation>
+      <Summary>Specifies the serial number of a serialized material.</Summary>
+      <LongDescription>You can use the serial number to identify individual instances of a material for individual tracking purposes.A prerequisite for using a serial number in the logistical process is a serial number profile at material plant level.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="UniqueItemIdentifier" Type="Edm.String" MaxLength="72" sap:display-format="UpperCase" sap:label="UII" sap:quickinfo="Unique Item Identifier">
+     <Documentation>
+      <Summary>Displays the unique item identifier (UII), a globally unique number that identifies a single item.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="ServiceReferenceProduct" Type="Edm.String" MaxLength="18" sap:display-format="UpperCase" sap:label="Product" sap:quickinfo="Product Number">
+     <Documentation>
+      <Summary>Alphanumeric key uniquely identifying the product.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="MaintObjListEntryIsProcessed" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Checkbox" sap:heading=""/>
+    <Property Name="CreationDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Date" sap:creatable="false" sap:updatable="false">
+     <Documentation>
+      <Summary>Date (YYYYMMDD)</Summary>
+      <LongDescription>Date in the form YYYYMMDD (where Y = year, M = month, D = day)19920301</LongDescription>
+     </Documentation>
+    </Property>
+    <NavigationProperty Name="to_MaintenanceItemTP" Relationship="cds_api_maintenanceplan.assoc_46DACA4DE267506660BAEEC1E83AA788" FromRole="FromRole_assoc_46DACA4DE267506660BAEEC1E83AA788" ToRole="ToRole_assoc_46DACA4DE267506660BAEEC1E83AA788"/>
+   </EntityType>
+   <EntityType Name="MaintenancePlanCallObject_Type" sap:label="Maintenance Plan Call Objects" sap:content-version="1">
+    <Key>
+     <PropertyRef Name="MaintenancePlan"/>
+     <PropertyRef Name="MaintenancePlanCallNumber"/>
+     <PropertyRef Name="MaintenanceItem"/>
+    </Key>
+    <Property Name="MaintenancePlan" Type="Edm.String" Nullable="false" MaxLength="12" sap:display-format="UpperCase" sap:label="Maintenance Plan">
+     <Documentation>
+      <Summary>Number identifying a maintenance plan.</Summary>
+      <LongDescription>In create mode, you can either choose a number yourself or have a concecutive number assigned for you by the system, depending on the method preferred by your company,If you leave the field blank, the system will assign a number automatically.If you enter a number, it must be within the corresponding number range.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="MaintenancePlanCallNumber" Type="Edm.Int32" Nullable="false" sap:label="MntPlan Call No." sap:quickinfo="Maintenance Plan Call Number">
+     <Documentation>
+      <Summary>Continual numbers of the maintenance call.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="MaintenanceItem" Type="Edm.String" Nullable="false" MaxLength="16" sap:display-format="UpperCase" sap:label="Maintenance Item" sap:quickinfo="Maintenance item">
+     <Documentation>
+      <Summary>Number identifying a maintenance item</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="MaintenanceOrder" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Order" sap:quickinfo="Order Number">
+     <Documentation>
+      <Summary>Key that uniquely identifies an order within a client.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="MaintenanceNotification" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Notification" sap:quickinfo="Notification Number">
+     <Documentation>
+      <Summary>Number that identifies the notification.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="ServiceOrder" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Transaction ID">
+     <Documentation>
+      <Summary>Number that identifies the transaction document. It is unique for each business transaction category.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="MaintCallHorizonIsNotReached" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Scheduling status" sap:quickinfo="Scheduling status: call horizon not reached"/>
+    <Property Name="SchedulingStatus" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Single-Character Flag" sap:heading=""/>
+    <Property Name="PlannedStartDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Basic start date"/>
+    <Property Name="ReleasedByUserName" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="User scheduling" sap:quickinfo="Scheduling determined by user">
+     <Documentation>
+      <Summary>Internal indicator that specifies how a planned date was changed.</Summary>
+      <LongDescription>If the field is selected, the planned date was changed by a user exit.All possible entries in the field USERMOD, as well as the relevant user exits are listed in the field USERMOD.Field contents:  Entry called by user exit:X   IPRM0002P      IPRM0005</LongDescription>
+     </Documentation>
+    </Property>
+   </EntityType>
+   <EntityType Name="MaintPlanClfnCharValueType" sap:label="Maintenance Plan Classification Class Characteristics Value" sap:content-version="1">
+    <Key>
+     <PropertyRef Name="MaintenancePlan"/>
+     <PropertyRef Name="ClassType"/>
+     <PropertyRef Name="ClfnCharcValuePositionNumber"/>
+     <PropertyRef Name="CharcInternalID"/>
+    </Key>
+    <Property Name="MaintenancePlan" Type="Edm.String" Nullable="false" MaxLength="12" sap:display-format="UpperCase" sap:label="Maintenance Plan">
+     <Documentation>
+      <Summary>Number identifying a maintenance plan.</Summary>
+      <LongDescription>In create mode, you can either choose a number yourself or have a concecutive number assigned for you by the system, depending on the method preferred by your company,If you leave the field blank, the system will assign a number automatically.If you enter a number, it must be within the corresponding number range.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="ClassType" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="UpperCase" sap:label="Class Type">
+     <Documentation>
+      <Summary>Uniquely identifies the class type</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="ClfnCharcValuePositionNumber" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative" sap:label="Counter" sap:quickinfo="Characteristic value counter"/>
+    <Property Name="CharcInternalID" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="NonNegative" sap:label="Characteristic Internal ID"/>
+    <Property Name="Characteristic" Type="Edm.String" MaxLength="30" sap:display-format="UpperCase" sap:label="Characteristic Name">
+     <Documentation>
+      <Summary>Name that uniquely identifies a characteristic.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="CharcDataType" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Format" sap:quickinfo="Data type of characteristic">
+     <Documentation>
+      <Summary>Data type of a characteristic's values.</Summary>
+      <LongDescription>The data type defines whether a characteristic value is a character string, a number, a date, or a time.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="Class" Type="Edm.String" MaxLength="18" sap:display-format="UpperCase" sap:label="Class" sap:quickinfo="Class number">
+     <Documentation>
+      <Summary>Name used to uniquely identify a class within a class type.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="ClassInternalID" Type="Edm.String" MaxLength="10" sap:display-format="NonNegative" sap:label="Internal class no." sap:quickinfo="Internal Class Number"/>
+    <Property Name="KeyDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date"/>
+    <Property Name="ChangeNumber" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Change Number">
+     <Documentation>
+      <Summary>Number used to uniquely identify a change master record.</Summary>
+      <LongDescription>If you make a change with reference to a change number, or create anobject with a change number, the following functions are at your disposal:The system determines the effectivity parametersThe conditions that the change is effective under can be defined in the change master record as follows:Changes with a date effectivity (valid from date)Changes with parameter effectivity (for example: serial no. effectivity)Log of the changes madeDocumentation for the changesRevision level to indicate the change status of a material or documentChanges released for the different areas in the company.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="CharcValueIntervalType" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Code" sap:quickinfo="Code for value dependency">
+     <Documentation>
+      <Summary>When defining values, intervals can be defined such that the FROM value or TO value is given an operator.</Summary>
+      <LongDescription>Example: 1.54&gt;-&lt;2.088The coding of the individual possible entries is described below.Code Operator Value1  Operator Value21 EQ2 GE  LT3 GE  LE4 GT  LT5 GT  LE6 LT7 LE8 GT9 GE</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="CharcValue" Type="Edm.String" MaxLength="70" sap:label="Characteristic Value">
+     <Documentation>
+      <Summary>Value of a characteristic.</Summary>
+      <LongDescription>If the characteristic has character format (CHAR), this field contains a single character string.Values in time format (TIME) must have the format HH:MM:SS. The separators are set automatically. Example:  112855  --&gt; 11:28:55The values in date format (DATE) must have the format DD.MM.YYYY. The separators are set automatically. Example: 110100  --&gt; 11.01.2000NoteIf you valuate validity parameters, you cannot specify intervals. You can only specify individual values.The following description does not apply to the valuation of validity parameters:If the characteristic format is numeric (NUM), time (TIME), or date (DATE), you can enter a number or (if allowed) an interval.Intervals are written in the following format:Value1 - Value2 (from Value1 to Value2)&gt;Value1 (greater than Value1)&gt;=Value1 (greater than or equal to Value1)&lt;Value2 (less than Value2)&lt;=Value2 (less than or equal to Value2)&gt;Value1 - &lt;Value2 (greater than Value1 and less than Value2)Value1 - &lt;Value2 (greater than or equal to Value1 and less thanValue2)&gt;Value1 - Value2 (greater than Value1 and less than or equal toValue2)If the characteristic has more than one value, you can enter multiple values separated by semicolons.If you have maintained a unit of measure for numeric values in the formatting data of the characteristic, the unit is displayed automatically when you confirm.NoteIf you want to define intervals as allowed values of a characteristic, you must define the characteristic as "multiple-value" when you maintain the characteristic in the Classification System. This also allows you to enter more than one interval.However, if you assign more than one interval to a characteristic of a class during configuration (for example, 1-2 and 5-6 for characteristic LENGTH), the system only reads one of the intervals when generating an inspection lot in QM. To avoid this problem, do NOT assign more than one interval to a characteristic.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="CharcFromNumericValue" Type="Edm.Double" sap:label="Value from" sap:quickinfo="Internal floating point from"/>
+    <Property Name="CharcFromNumericValueUnit" Type="Edm.String" MaxLength="3" sap:label="Internal UoM" sap:quickinfo="Unit of Measurement" sap:semantics="unit-of-measure">
+     <Documentation>
+      <Summary>Internal, language-independent, measurement unit format.</Summary>
+      <LongDescription>This format is used for internal processing.The internal format is automatically replaced by either the external commercial (three-character) or technical (six-character) format before output to the screen.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="CharcToNumericValue" Type="Edm.Double" sap:label="Value to" sap:quickinfo="Internal floating point value to"/>
+    <Property Name="CharcToNumericValueUnit" Type="Edm.String" MaxLength="3" sap:label="Internal UoM" sap:quickinfo="Unit of Measurement" sap:semantics="unit-of-measure">
+     <Documentation>
+      <Summary>Internal, language-independent, measurement unit format.</Summary>
+      <LongDescription>This format is used for internal processing.The internal format is automatically replaced by either the external commercial (three-character) or technical (six-character) format before output to the screen.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="CharcFromDecimalValue" Type="Edm.Decimal" Precision="31" Scale="14" sap:label="LowrBndry Nmrc" sap:quickinfo="Lower Boundary for Numeric Field"/>
+    <Property Name="CharcToDecimalValue" Type="Edm.Decimal" Precision="31" Scale="14" sap:label="UprBndry Nmrc" sap:quickinfo="Upper Boundary for Numeric Field"/>
+    <Property Name="ClfnObjectID" Type="Edm.String" MaxLength="90" sap:label="Object" sap:quickinfo="Key of Object to be Classified"/>
+    <Property Name="CharcFromAmount" Type="Edm.Decimal" Precision="23" Scale="3" sap:unit="Currency" sap:variable-scale="true" sap:label="LowrBndry Crcy" sap:quickinfo="Lower Boundary for Currency Field"/>
+    <Property Name="CharcToAmount" Type="Edm.Decimal" Precision="23" Scale="3" sap:unit="Currency" sap:variable-scale="true" sap:label="UprBndry Crcy" sap:quickinfo="Upper Boundary for Currency Field"/>
+    <Property Name="Currency" Type="Edm.String" MaxLength="5" sap:display-format="UpperCase" sap:label="Currency" sap:quickinfo="Currency Key" sap:semantics="currency-code">
+     <Documentation>
+      <Summary>Key for the currency in which the amounts are managed in the system.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="CharcFromDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="LowrBndry Date" sap:quickinfo="Lower Boundary for Date-Interval"/>
+    <Property Name="CharcToDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="UprBndry Date" sap:quickinfo="Upper Boundary for Date-Interval"/>
+    <Property Name="CharcFromTime" Type="Edm.Time" Precision="0" sap:label="LowrBndry Time" sap:quickinfo="Lower Boundary for Time-Interval"/>
+    <Property Name="CharcToTime" Type="Edm.Time" Precision="0" sap:label="UprBndry Time" sap:quickinfo="Upper Boundary for Time-Interval"/>
+    <Property Name="CharcMaintAuthGrp" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Authorization Group" sap:quickinfo="Authorization Group for Characteristics Maintenance">
+     <Documentation>
+      <Summary>This key defines whether a user is allowed to maintain this characteristic.</Summary>
+      <LongDescription>This authorization must be defined in the user master record.The authorization object is C_CABN_GRP.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="ClassMaintAuthGrp" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Class Maintenance" sap:quickinfo="Class Maintenance Authorization Group">
+     <Documentation>
+      <Summary>Authorization key that determines whether a user is allowed to maintain this class.</Summary>
+      <LongDescription>This authorization must be defined in the user master record. The authorization object is BGRKP.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="ClassClassfctnAuthGrp" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Classification" sap:quickinfo="Classification Authorization Group">
+     <Documentation>
+      <Summary>Authorization key: determines whether a user is allowed to assign objects to this class.</Summary>
+      <LongDescription>This authorization must be defined in the user master record. The authorization object is BGRKL.</LongDescription>
+     </Documentation>
+    </Property>
+    <NavigationProperty Name="to_Characteristic" Relationship="cds_api_maintenanceplan.assoc_45F7393613D752EA8348313523A26D0B" FromRole="FromRole_assoc_45F7393613D752EA8348313523A26D0B" ToRole="ToRole_assoc_45F7393613D752EA8348313523A26D0B"/>
+    <NavigationProperty Name="to_MaintPlanClass" Relationship="cds_api_maintenanceplan.assoc_0D61A8B9388C481BDD2E188AE1059C1D" FromRole="FromRole_assoc_0D61A8B9388C481BDD2E188AE1059C1D" ToRole="ToRole_assoc_0D61A8B9388C481BDD2E188AE1059C1D"/>
+   </EntityType>
+   <EntityType Name="MaintPlanClfnClassType" sap:label="Maintenance Plan Classification Class" sap:content-version="1">
+    <Key>
+     <PropertyRef Name="MaintenancePlan"/>
+     <PropertyRef Name="ClassInternalID"/>
+     <PropertyRef Name="ClassType"/>
+    </Key>
+    <Property Name="MaintenancePlan" Type="Edm.String" Nullable="false" MaxLength="12" sap:display-format="UpperCase" sap:label="Maintenance Plan">
+     <Documentation>
+      <Summary>Number identifying a maintenance plan.</Summary>
+      <LongDescription>In create mode, you can either choose a number yourself or have a concecutive number assigned for you by the system, depending on the method preferred by your company,If you leave the field blank, the system will assign a number automatically.If you enter a number, it must be within the corresponding number range.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="ClassInternalID" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="NonNegative" sap:label="Internal class no." sap:quickinfo="Internal Class Number"/>
+    <Property Name="ClassType" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="UpperCase" sap:label="Class Type">
+     <Documentation>
+      <Summary>Uniquely identifies the class type</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="KeyDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date"/>
+    <Property Name="ChangeNumber" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Change Number">
+     <Documentation>
+      <Summary>Number used to uniquely identify a change master record.</Summary>
+      <LongDescription>If you make a change with reference to a change number, or create anobject with a change number, the following functions are at your disposal:The system determines the effectivity parametersThe conditions that the change is effective under can be defined in the change master record as follows:Changes with a date effectivity (valid from date)Changes with parameter effectivity (for example: serial no. effectivity)Log of the changes madeDocumentation for the changesRevision level to indicate the change status of a material or documentChanges released for the different areas in the company.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="ClfnStatus" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Status" sap:quickinfo="Classification status">
+     <Documentation>
+      <Summary>Defines whether the allocation is released for class search or locked.</Summary>
+      <LongDescription>If the allocation is locked, the object is not shown in the search result, or is shown with a special indicator.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="ClassPositionNumber" Type="Edm.Int16" sap:label="Pos." sap:quickinfo="Sort Item"/>
+    <Property Name="ClassIsStandardClass" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Standard class" sap:quickinfo="Indicator: Standard Class">
+     <Documentation>
+      <Summary>Indicator identifying a class as a standard class.</Summary>
+      <LongDescription>A standard class allows you to access all the information on classification and characteristics for an object when you use the object, without having to select one of the classes it is assigned to.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="ClfnObjectInternalID" Type="Edm.String" MaxLength="18" sap:display-format="NonNegative" sap:label="Internal Object No." sap:quickinfo="Configuration (Internal Object Number)">
+     <Documentation>
+      <Summary>Consecutive number used to assign objects within a class type.</Summary>
+      <LongDescription>Here, the object number refers to the assignment of a variant to a plant-specific configurable material via the values assigned.The value assignment is as follows:General configurable material  Racing bicycleVariant  Blue racing bicycleCharacteristic value  BlueThe system stores, for example, the number 20 internally. Behind this number lies the characteristic value "blue" for the variant "blue racing bicycle".</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="ValidityEndDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Valid to" sap:quickinfo="Valid-to date">
+     <Documentation>
+      <Summary>End of validity period of an object (such as material, BOM, or routing) in the SAP System.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="Class" Type="Edm.String" MaxLength="18" sap:display-format="UpperCase" sap:label="Class" sap:quickinfo="Class number">
+     <Documentation>
+      <Summary>Name used to uniquely identify a class within a class type.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="ClassMaintAuthGrp" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Class Maintenance" sap:quickinfo="Class Maintenance Authorization Group">
+     <Documentation>
+      <Summary>Authorization key that determines whether a user is allowed to maintain this class.</Summary>
+      <LongDescription>This authorization must be defined in the user master record. The authorization object is BGRKP.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="ClassClassfctnAuthGrp" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Classification" sap:quickinfo="Classification Authorization Group">
+     <Documentation>
+      <Summary>Authorization key: determines whether a user is allowed to assign objects to this class.</Summary>
+      <LongDescription>This authorization must be defined in the user master record. The authorization object is BGRKL.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="MaintenancePlanCallObject" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Call object" sap:quickinfo="Call object for maintenance plan">
+     <Documentation>
+      <Summary>Indicator which determines for the maintenance plan category which type of object a maintenance call creates, for example, a maintenance order or a service entry sheet.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="AuthorizationGroup" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="AuthorizGroup" sap:quickinfo="Technical Object Authorization Group">
+     <Documentation>
+      <Summary>Authorization group of a technical object in Plant Maintenance</Summary>
+      <LongDescription>With an entry in this field, you allocate the master record of this object to a group to which only certain users have access for processing the data. The users that have access authorization have the appropriate entry in their user master record.</LongDescription>
+     </Documentation>
+    </Property>
+    <NavigationProperty Name="to_Characteristic" Relationship="cds_api_maintenanceplan.assoc_B67E0BEFB2291A9D1F752ABAD9E0F2D9" FromRole="FromRole_assoc_B67E0BEFB2291A9D1F752ABAD9E0F2D9" ToRole="ToRole_assoc_B67E0BEFB2291A9D1F752ABAD9E0F2D9"/>
+   </EntityType>
+   <EntityType Name="MaintPlanClfnClassCharType" sap:label="Maintenance Plan Classification Class Characteristics" sap:content-version="1">
+    <Key>
+     <PropertyRef Name="MaintenancePlan"/>
+     <PropertyRef Name="ClassInternalID"/>
+     <PropertyRef Name="CharcInternalID"/>
+    </Key>
+    <Property Name="MaintenancePlan" Type="Edm.String" Nullable="false" MaxLength="12" sap:display-format="UpperCase" sap:label="Maintenance Plan">
+     <Documentation>
+      <Summary>Number identifying a maintenance plan.</Summary>
+      <LongDescription>In create mode, you can either choose a number yourself or have a concecutive number assigned for you by the system, depending on the method preferred by your company,If you leave the field blank, the system will assign a number automatically.If you enter a number, it must be within the corresponding number range.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="ClassInternalID" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="NonNegative" sap:label="Internal class no." sap:quickinfo="Internal Class Number"/>
+    <Property Name="CharcInternalID" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="NonNegative" sap:label="Characteristic Internal ID"/>
+    <Property Name="Characteristic" Type="Edm.String" MaxLength="30" sap:display-format="UpperCase" sap:label="Characteristic Name">
+     <Documentation>
+      <Summary>Name that uniquely identifies a characteristic.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="CharcDataType" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Format" sap:quickinfo="Data type of characteristic">
+     <Documentation>
+      <Summary>Data type of a characteristic's values.</Summary>
+      <LongDescription>The data type defines whether a characteristic value is a character string, a number, a date, or a time.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="KeyDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date"/>
+    <Property Name="ChangeNumber" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Change Number">
+     <Documentation>
+      <Summary>Number used to uniquely identify a change master record.</Summary>
+      <LongDescription>If you make a change with reference to a change number, or create anobject with a change number, the following functions are at your disposal:The system determines the effectivity parametersThe conditions that the change is effective under can be defined in the change master record as follows:Changes with a date effectivity (valid from date)Changes with parameter effectivity (for example: serial no. effectivity)Log of the changes madeDocumentation for the changesRevision level to indicate the change status of a material or documentChanges released for the different areas in the company.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="ClassType" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Class Type">
+     <Documentation>
+      <Summary>Uniquely identifies the class type</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="ClfnObjectID" Type="Edm.String" MaxLength="90" sap:label="Object" sap:quickinfo="Key of Object to be Classified"/>
+    <Property Name="ClassMaintAuthGrp" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Class Maintenance" sap:quickinfo="Class Maintenance Authorization Group">
+     <Documentation>
+      <Summary>Authorization key that determines whether a user is allowed to maintain this class.</Summary>
+      <LongDescription>This authorization must be defined in the user master record. The authorization object is BGRKP.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="ClassClassfctnAuthGrp" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Classification" sap:quickinfo="Classification Authorization Group">
+     <Documentation>
+      <Summary>Authorization key: determines whether a user is allowed to assign objects to this class.</Summary>
+      <LongDescription>This authorization must be defined in the user master record. The authorization object is BGRKL.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="CharcMaintAuthGrp" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Authorization Group" sap:quickinfo="Authorization Group for Characteristics Maintenance">
+     <Documentation>
+      <Summary>This key defines whether a user is allowed to maintain this characteristic.</Summary>
+      <LongDescription>This authorization must be defined in the user master record.The authorization object is C_CABN_GRP.</LongDescription>
+     </Documentation>
+    </Property>
+    <NavigationProperty Name="to_MaintPlanClass" Relationship="cds_api_maintenanceplan.assoc_2D4FABC5ED15DEA580192FDCC39874FD" FromRole="FromRole_assoc_2D4FABC5ED15DEA580192FDCC39874FD" ToRole="ToRole_assoc_2D4FABC5ED15DEA580192FDCC39874FD"/>
+    <NavigationProperty Name="to_Value" Relationship="cds_api_maintenanceplan.assoc_8EB0E50DFF0D5E645753E42E8820A54C" FromRole="FromRole_assoc_8EB0E50DFF0D5E645753E42E8820A54C" ToRole="ToRole_assoc_8EB0E50DFF0D5E645753E42E8820A54C"/>
+   </EntityType>
+   <EntityType Name="MaintenancePlanStrategyCycle_Type" sap:label="Maintenance Cycles of Strategy Plan" sap:content-version="1">
+    <Key>
+     <PropertyRef Name="MaintenancePlan"/>
+     <PropertyRef Name="MaintenancePlanCycle"/>
+    </Key>
+    <Property Name="MaintenancePlan" Type="Edm.String" Nullable="false" MaxLength="12" sap:display-format="UpperCase" sap:label="Maintenance Plan">
+     <Documentation>
+      <Summary>Number identifying a maintenance plan.</Summary>
+      <LongDescription>In create mode, you can either choose a number yourself or have a concecutive number assigned for you by the system, depending on the method preferred by your company,If you leave the field blank, the system will assign a number automatically.If you enter a number, it must be within the corresponding number range.</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="MaintenancePlanCycle" Type="Edm.String" Nullable="false" MaxLength="2" sap:display-format="NonNegative" sap:label="Counter" sap:quickinfo="Counter in Control Tables"/>
+    <Property Name="MaintenanceStrategy" Type="Edm.String" MaxLength="6" sap:display-format="UpperCase" sap:label="Maintenance Strategy">
+     <Documentation>
+      <Summary>Key identifying a maintenance strategy or cycle set.</Summary>
+      <LongDescription/>
+     </Documentation>
+    </Property>
+    <Property Name="MaintPlanCycRcrrcIntervalQty" Type="Edm.Double" sap:unit="MaintPlanCycRcrrcIntervalUnit" sap:label="Cycle Interval" sap:quickinfo="Maintenance Plan Cycle Interval"/>
+    <Property Name="MaintPlanCycRcrrcIntervalUnit" Type="Edm.String" MaxLength="3" sap:label="Unit" sap:quickinfo="Unit for the performance of maintenance tasks" sap:semantics="unit-of-measure">
+     <Documentation>
+      <Summary>Unit which determines the basis on which the scheduling calculation should be made.</Summary>
+      <LongDescription>For time-based and performance-based maintenance plans, the individual maintenance packages can only use different features if their dimension is the same as the unit for the maintenance strategy.NoteIf you use the units "month" and "year" for time strategies for maintenance packages, this can lead to problems in the use of hierarchies.The reason for this lies in the length of the month:1 month = 30 days =&gt; 1 year = 360 daysBut: 1 calendar year = 365 (366) days1st package: 1Y (Y = yearly)  =&gt; due after 360 days2nd package: 1M (M = monthly) =&gt; 12th monthly package due after 365 daysThe 12th monthly package for the monthly strategy and the yearly strategy do not fall on the same date.NoteSAP therefore recommends that for the combination of monthly and yearly packages, the yearly packages should be defined using the unit "month" and not the unit "year". This means:1st package: 12M (yearly)2nd package:  1M (monthly)</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="MaintPlanCycleDesc" Type="Edm.String" MaxLength="30" sap:label="Cycle text" sap:quickinfo="Text for maintenance package/cycle (time/performance)">
+     <Documentation>
+      <Summary>You can use this text to describe a maintenance cycle.</Summary>
+      <LongDescription>Within a maintenance strategy, you can set out the description for a maintenance package.Possible examples could be:MonthlyEvery 100 kilometers</LongDescription>
+     </Documentation>
+    </Property>
+    <Property Name="MaintPlanCycleStartOffsetValue" Type="Edm.Double" sap:unit="MaintPlanCycRcrrcIntervalUnit" sap:label="Cycle Interval" sap:quickinfo="Maintenance Plan Cycle Interval"/>
+   </EntityType>
+   <ComplexType Name="DummyFunctionImportResult">
+    <Property Name="IsInvalid" Type="Edm.Boolean" sap:label="TRUE" sap:quickinfo="Data element for domain BOOLE: TRUE (='X') and FALSE (=' ')"/>
+   </ComplexType>
+   <Association Name="assoc_BD9243D582EABF5CC3618C596ED96155" sap:content-version="1">
+    <End Type="cds_api_maintenanceplan.MaintenanceItemReasonType" Multiplicity="1" Role="FromRole_assoc_BD9243D582EABF5CC3618C596ED96155"/>
+    <End Type="cds_api_maintenanceplan.MaintenanceItemType" Multiplicity="1" Role="ToRole_assoc_BD9243D582EABF5CC3618C596ED96155"/>
+   </Association>
+   <Association Name="assoc_172563363C0F07BA9451856421F6666C" sap:content-version="1">
+    <End Type="cds_api_maintenanceplan.MaintenanceItemReasonType" Multiplicity="1" Role="FromRole_assoc_172563363C0F07BA9451856421F6666C">
+     <OnDelete Action="Cascade"/>
+    </End>
+    <End Type="cds_api_maintenanceplan.MaintenanceItemReasonTextType" Multiplicity="*" Role="ToRole_assoc_172563363C0F07BA9451856421F6666C"/>
+    <ReferentialConstraint>
+     <Principal Role="FromRole_assoc_172563363C0F07BA9451856421F6666C">
+      <PropertyRef Name="NmbrOfMaintComplianceItems"/>
+      <PropertyRef Name="MaintenanceItem"/>
+     </Principal>
+     <Dependent Role="ToRole_assoc_172563363C0F07BA9451856421F6666C">
+      <PropertyRef Name="NmbrOfMaintComplianceItems"/>
+      <PropertyRef Name="MaintenanceItem"/>
+     </Dependent>
+    </ReferentialConstraint>
+   </Association>
+   <Association Name="assoc_33951E0F81898A5CDEF081C801F6816F" sap:content-version="1">
+    <End Type="cds_api_maintenanceplan.MaintenanceItemCauseTextType" Multiplicity="1" Role="FromRole_assoc_33951E0F81898A5CDEF081C801F6816F"/>
+    <End Type="cds_api_maintenanceplan.MaintenanceItemType" Multiplicity="1" Role="ToRole_assoc_33951E0F81898A5CDEF081C801F6816F"/>
+   </Association>
+   <Association Name="assoc_C3F0FBB0C8DF0A7CE904ACB476F7553F" sap:content-version="1">
+    <End Type="cds_api_maintenanceplan.MaintenanceItemCauseTextType" Multiplicity="1" Role="FromRole_assoc_C3F0FBB0C8DF0A7CE904ACB476F7553F"/>
+    <End Type="cds_api_maintenanceplan.MaintenanceItemCauseType" Multiplicity="1" Role="ToRole_assoc_C3F0FBB0C8DF0A7CE904ACB476F7553F"/>
+   </Association>
+   <Association Name="assoc_BD949FC3A4E1A08D66ACD56BBDD8EAAD" sap:content-version="1">
+    <End Type="cds_api_maintenanceplan.MaintenancePlanCycleType" Multiplicity="1" Role="FromRole_assoc_BD949FC3A4E1A08D66ACD56BBDD8EAAD"/>
+    <End Type="cds_api_maintenanceplan.MaintenancePlanType" Multiplicity="1" Role="ToRole_assoc_BD949FC3A4E1A08D66ACD56BBDD8EAAD"/>
+   </Association>
+   <Association Name="assoc_8AAE23A4C51579B3D9873D534B291C6B" sap:content-version="1">
+    <End Type="cds_api_maintenanceplan.MaintenanceItemTextType" Multiplicity="1" Role="FromRole_assoc_8AAE23A4C51579B3D9873D534B291C6B"/>
+    <End Type="cds_api_maintenanceplan.MaintenanceItemType" Multiplicity="1" Role="ToRole_assoc_8AAE23A4C51579B3D9873D534B291C6B"/>
+   </Association>
+   <Association Name="assoc_46DACA4DE267506660BAEEC1E83AA788" sap:content-version="1">
+    <End Type="cds_api_maintenanceplan.MaintItemObjectListItemType" Multiplicity="1" Role="FromRole_assoc_46DACA4DE267506660BAEEC1E83AA788"/>
+    <End Type="cds_api_maintenanceplan.MaintenanceItemType" Multiplicity="1" Role="ToRole_assoc_46DACA4DE267506660BAEEC1E83AA788"/>
+   </Association>
+   <Association Name="assoc_119699D72A495C26249C6BCE97F2BEA2" sap:content-version="1">
+    <End Type="cds_api_maintenanceplan.MaintenanceItemReasonTextType" Multiplicity="1" Role="FromRole_assoc_119699D72A495C26249C6BCE97F2BEA2"/>
+    <End Type="cds_api_maintenanceplan.MaintenanceItemType" Multiplicity="1" Role="ToRole_assoc_119699D72A495C26249C6BCE97F2BEA2"/>
+   </Association>
+   <Association Name="assoc_20ED92DAB57ECE5E02B063901F1C04AD" sap:content-version="1">
+    <End Type="cds_api_maintenanceplan.MaintenanceItemReasonTextType" Multiplicity="1" Role="FromRole_assoc_20ED92DAB57ECE5E02B063901F1C04AD"/>
+    <End Type="cds_api_maintenanceplan.MaintenanceItemReasonType" Multiplicity="1" Role="ToRole_assoc_20ED92DAB57ECE5E02B063901F1C04AD"/>
+   </Association>
+   <Association Name="assoc_2D4FABC5ED15DEA580192FDCC39874FD" sap:content-version="1">
+    <End Type="cds_api_maintenanceplan.MaintPlanClfnClassCharType" Multiplicity="1" Role="FromRole_assoc_2D4FABC5ED15DEA580192FDCC39874FD"/>
+    <End Type="cds_api_maintenanceplan.MaintPlanClfnClassType" Multiplicity="1" Role="ToRole_assoc_2D4FABC5ED15DEA580192FDCC39874FD"/>
+   </Association>
+   <Association Name="assoc_8EB0E50DFF0D5E645753E42E8820A54C" sap:content-version="1">
+    <End Type="cds_api_maintenanceplan.MaintPlanClfnClassCharType" Multiplicity="1" Role="FromRole_assoc_8EB0E50DFF0D5E645753E42E8820A54C"/>
+    <End Type="cds_api_maintenanceplan.MaintPlanClfnCharValueType" Multiplicity="*" Role="ToRole_assoc_8EB0E50DFF0D5E645753E42E8820A54C"/>
+   </Association>
+   <Association Name="assoc_63AF618F9A4C25A022C7E6CD12C1C806" sap:content-version="1">
+    <End Type="cds_api_maintenanceplan.MaintenancePlanTextType" Multiplicity="1" Role="FromRole_assoc_63AF618F9A4C25A022C7E6CD12C1C806"/>
+    <End Type="cds_api_maintenanceplan.MaintenancePlanType" Multiplicity="1" Role="ToRole_assoc_63AF618F9A4C25A022C7E6CD12C1C806"/>
+   </Association>
+   <Association Name="assoc_45F7393613D752EA8348313523A26D0B" sap:content-version="1">
+    <End Type="cds_api_maintenanceplan.MaintPlanClfnCharValueType" Multiplicity="1" Role="FromRole_assoc_45F7393613D752EA8348313523A26D0B"/>
+    <End Type="cds_api_maintenanceplan.MaintPlanClfnClassCharType" Multiplicity="1" Role="ToRole_assoc_45F7393613D752EA8348313523A26D0B"/>
+   </Association>
+   <Association Name="assoc_0D61A8B9388C481BDD2E188AE1059C1D" sap:content-version="1">
+    <End Type="cds_api_maintenanceplan.MaintPlanClfnCharValueType" Multiplicity="1" Role="FromRole_assoc_0D61A8B9388C481BDD2E188AE1059C1D"/>
+    <End Type="cds_api_maintenanceplan.MaintPlanClfnClassType" Multiplicity="1" Role="ToRole_assoc_0D61A8B9388C481BDD2E188AE1059C1D"/>
+   </Association>
+   <Association Name="assoc_19DEDAADF4EBDAD8816485C9AEC01509" sap:content-version="1">
+    <End Type="cds_api_maintenanceplan.MaintenanceItemCauseType" Multiplicity="1" Role="FromRole_assoc_19DEDAADF4EBDAD8816485C9AEC01509"/>
+    <End Type="cds_api_maintenanceplan.MaintenanceItemType" Multiplicity="1" Role="ToRole_assoc_19DEDAADF4EBDAD8816485C9AEC01509"/>
+   </Association>
+   <Association Name="assoc_9DA82BF69497585FD83C8B23088A6A54" sap:content-version="1">
+    <End Type="cds_api_maintenanceplan.MaintenanceItemCauseType" Multiplicity="1" Role="FromRole_assoc_9DA82BF69497585FD83C8B23088A6A54">
+     <OnDelete Action="Cascade"/>
+    </End>
+    <End Type="cds_api_maintenanceplan.MaintenanceItemCauseTextType" Multiplicity="*" Role="ToRole_assoc_9DA82BF69497585FD83C8B23088A6A54"/>
+    <ReferentialConstraint>
+     <Principal Role="FromRole_assoc_9DA82BF69497585FD83C8B23088A6A54">
+      <PropertyRef Name="NmbrOfMaintComplianceItems"/>
+      <PropertyRef Name="MaintenanceItem"/>
+     </Principal>
+     <Dependent Role="ToRole_assoc_9DA82BF69497585FD83C8B23088A6A54">
+      <PropertyRef Name="NmbrOfMaintComplianceItems"/>
+      <PropertyRef Name="MaintenanceItem"/>
+     </Dependent>
+    </ReferentialConstraint>
+   </Association>
+   <Association Name="assoc_15F5EB5C6E38373703381E82315FF47A" sap:content-version="1">
+    <End Type="cds_api_maintenanceplan.MaintenancePlanType" Multiplicity="1" Role="FromRole_assoc_15F5EB5C6E38373703381E82315FF47A"/>
+    <End Type="cds_api_maintenanceplan.MaintenanceItemType" Multiplicity="*" Role="ToRole_assoc_15F5EB5C6E38373703381E82315FF47A"/>
+   </Association>
+   <Association Name="assoc_A82C2BFE56D1D9B5A93F4BE03599B7A8" sap:content-version="1">
+    <End Type="cds_api_maintenanceplan.MaintenancePlanType" Multiplicity="1" Role="FromRole_assoc_A82C2BFE56D1D9B5A93F4BE03599B7A8">
+     <OnDelete Action="Cascade"/>
+    </End>
+    <End Type="cds_api_maintenanceplan.MaintenancePlanTextType" Multiplicity="*" Role="ToRole_assoc_A82C2BFE56D1D9B5A93F4BE03599B7A8"/>
+    <ReferentialConstraint>
+     <Principal Role="FromRole_assoc_A82C2BFE56D1D9B5A93F4BE03599B7A8">
+      <PropertyRef Name="MaintenancePlan"/>
+     </Principal>
+     <Dependent Role="ToRole_assoc_A82C2BFE56D1D9B5A93F4BE03599B7A8">
+      <PropertyRef Name="MaintenancePlan"/>
+     </Dependent>
+    </ReferentialConstraint>
+   </Association>
+   <Association Name="assoc_808114E364F980B05C0B20FD95226729" sap:content-version="1">
+    <End Type="cds_api_maintenanceplan.MaintenancePlanType" Multiplicity="1" Role="FromRole_assoc_808114E364F980B05C0B20FD95226729">
+     <OnDelete Action="Cascade"/>
+    </End>
+    <End Type="cds_api_maintenanceplan.MaintenancePlanCycleType" Multiplicity="*" Role="ToRole_assoc_808114E364F980B05C0B20FD95226729"/>
+    <ReferentialConstraint>
+     <Principal Role="FromRole_assoc_808114E364F980B05C0B20FD95226729">
+      <PropertyRef Name="MaintenancePlan"/>
+     </Principal>
+     <Dependent Role="ToRole_assoc_808114E364F980B05C0B20FD95226729">
+      <PropertyRef Name="MaintenancePlan"/>
+     </Dependent>
+    </ReferentialConstraint>
+   </Association>
+   <Association Name="assoc_633A0222D96034C87156B01A5868C93A" sap:content-version="1">
+    <End Type="cds_api_maintenanceplan.MaintenancePlanType" Multiplicity="1" Role="FromRole_assoc_633A0222D96034C87156B01A5868C93A"/>
+    <End Type="cds_api_maintenanceplan.MaintPlanClfnClassType" Multiplicity="*" Role="ToRole_assoc_633A0222D96034C87156B01A5868C93A"/>
+   </Association>
+   <Association Name="assoc_9FE10E86AA0F60BBCC86BCFF064ABC38" sap:content-version="1">
+    <End Type="cds_api_maintenanceplan.MaintenancePlanType" Multiplicity="1" Role="FromRole_assoc_9FE10E86AA0F60BBCC86BCFF064ABC38"/>
+    <End Type="cds_api_maintenanceplan.MaintenancePlanScheduleType" Multiplicity="*" Role="ToRole_assoc_9FE10E86AA0F60BBCC86BCFF064ABC38"/>
+   </Association>
+   <Association Name="assoc_2C7A7DADB69F4F62811F79D0C3A0D6E6" sap:content-version="1">
+    <End Type="cds_api_maintenanceplan.MaintenancePlanType" Multiplicity="1" Role="FromRole_assoc_2C7A7DADB69F4F62811F79D0C3A0D6E6"/>
+    <End Type="cds_api_maintenanceplan.MaintenancePlanStrategyCycle_Type" Multiplicity="*" Role="ToRole_assoc_2C7A7DADB69F4F62811F79D0C3A0D6E6"/>
+   </Association>
+   <Association Name="assoc_B67E0BEFB2291A9D1F752ABAD9E0F2D9" sap:content-version="1">
+    <End Type="cds_api_maintenanceplan.MaintPlanClfnClassType" Multiplicity="1" Role="FromRole_assoc_B67E0BEFB2291A9D1F752ABAD9E0F2D9"/>
+    <End Type="cds_api_maintenanceplan.MaintPlanClfnClassCharType" Multiplicity="*" Role="ToRole_assoc_B67E0BEFB2291A9D1F752ABAD9E0F2D9"/>
+   </Association>
+   <Association Name="assoc_811F3BC6F9A34CE2853C2A2371BE04A2" sap:content-version="1">
+    <End Type="cds_api_maintenanceplan.MaintenanceItemType" Multiplicity="1" Role="FromRole_assoc_811F3BC6F9A34CE2853C2A2371BE04A2">
+     <OnDelete Action="Cascade"/>
+    </End>
+    <End Type="cds_api_maintenanceplan.MaintenanceItemCauseType" Multiplicity="*" Role="ToRole_assoc_811F3BC6F9A34CE2853C2A2371BE04A2"/>
+    <ReferentialConstraint>
+     <Principal Role="FromRole_assoc_811F3BC6F9A34CE2853C2A2371BE04A2">
+      <PropertyRef Name="MaintenanceItem"/>
+     </Principal>
+     <Dependent Role="ToRole_assoc_811F3BC6F9A34CE2853C2A2371BE04A2">
+      <PropertyRef Name="MaintenanceItem"/>
+     </Dependent>
+    </ReferentialConstraint>
+   </Association>
+   <Association Name="assoc_E149497EF94BDC05D23BEBDACA98D13E" sap:content-version="1">
+    <End Type="cds_api_maintenanceplan.MaintenanceItemType" Multiplicity="1" Role="FromRole_assoc_E149497EF94BDC05D23BEBDACA98D13E">
+     <OnDelete Action="Cascade"/>
+    </End>
+    <End Type="cds_api_maintenanceplan.MaintenanceItemReasonType" Multiplicity="*" Role="ToRole_assoc_E149497EF94BDC05D23BEBDACA98D13E"/>
+    <ReferentialConstraint>
+     <Principal Role="FromRole_assoc_E149497EF94BDC05D23BEBDACA98D13E">
+      <PropertyRef Name="MaintenanceItem"/>
+     </Principal>
+     <Dependent Role="ToRole_assoc_E149497EF94BDC05D23BEBDACA98D13E">
+      <PropertyRef Name="MaintenanceItem"/>
+     </Dependent>
+    </ReferentialConstraint>
+   </Association>
+   <Association Name="assoc_4B710278141E00E72B3B05027BF25431" sap:content-version="1">
+    <End Type="cds_api_maintenanceplan.MaintenanceItemType" Multiplicity="1" Role="FromRole_assoc_4B710278141E00E72B3B05027BF25431">
+     <OnDelete Action="Cascade"/>
+    </End>
+    <End Type="cds_api_maintenanceplan.MaintItemObjectListItemType" Multiplicity="*" Role="ToRole_assoc_4B710278141E00E72B3B05027BF25431"/>
+    <ReferentialConstraint>
+     <Principal Role="FromRole_assoc_4B710278141E00E72B3B05027BF25431">
+      <PropertyRef Name="MaintenanceItem"/>
+     </Principal>
+     <Dependent Role="ToRole_assoc_4B710278141E00E72B3B05027BF25431">
+      <PropertyRef Name="MaintenanceItem"/>
+     </Dependent>
+    </ReferentialConstraint>
+   </Association>
+   <Association Name="assoc_ED2EE33FB914C2F33785DC4F1E133B02" sap:content-version="1">
+    <End Type="cds_api_maintenanceplan.MaintenanceItemType" Multiplicity="1" Role="FromRole_assoc_ED2EE33FB914C2F33785DC4F1E133B02"/>
+    <End Type="cds_api_maintenanceplan.MaintenancePlanCallObject_Type" Multiplicity="*" Role="ToRole_assoc_ED2EE33FB914C2F33785DC4F1E133B02"/>
+   </Association>
+   <Association Name="assoc_840CD2D7DE151A3AEF37F9ACD7669146" sap:content-version="1">
+    <End Type="cds_api_maintenanceplan.MaintenanceItemType" Multiplicity="1" Role="FromRole_assoc_840CD2D7DE151A3AEF37F9ACD7669146">
+     <OnDelete Action="Cascade"/>
+    </End>
+    <End Type="cds_api_maintenanceplan.MaintenanceItemTextType" Multiplicity="*" Role="ToRole_assoc_840CD2D7DE151A3AEF37F9ACD7669146"/>
+    <ReferentialConstraint>
+     <Principal Role="FromRole_assoc_840CD2D7DE151A3AEF37F9ACD7669146">
+      <PropertyRef Name="MaintenanceItem"/>
+     </Principal>
+     <Dependent Role="ToRole_assoc_840CD2D7DE151A3AEF37F9ACD7669146">
+      <PropertyRef Name="MaintenanceItem"/>
+     </Dependent>
+    </ReferentialConstraint>
+   </Association>
+   <Association Name="assoc_2905A8C19B8A8AE585ED51AF11725FF9" sap:content-version="1">
+    <End Type="cds_api_maintenanceplan.MaintenancePlanScheduleType" Multiplicity="1" Role="FromRole_assoc_2905A8C19B8A8AE585ED51AF11725FF9"/>
+    <End Type="cds_api_maintenanceplan.MaintenancePlanCallObject_Type" Multiplicity="*" Role="ToRole_assoc_2905A8C19B8A8AE585ED51AF11725FF9"/>
+   </Association>
+   <EntityContainer Name="cds_api_maintenanceplan_Entities" m:IsDefaultEntityContainer="true" sap:message-scope-supported="true" sap:supported-formats="atom json xlsx">
+    <EntitySet Name="MaintenanceItem" EntityType="cds_api_maintenanceplan.MaintenanceItemType" sap:deletable="false" sap:content-version="1"/>
+    <EntitySet Name="MaintenanceItemCause" EntityType="cds_api_maintenanceplan.MaintenanceItemCauseType" sap:creatable="false" sap:content-version="1"/>
+    <EntitySet Name="MaintenanceItemCauseText" EntityType="cds_api_maintenanceplan.MaintenanceItemCauseTextType" sap:creatable="false" sap:content-version="1"/>
+    <EntitySet Name="MaintenanceItemReason" EntityType="cds_api_maintenanceplan.MaintenanceItemReasonType" sap:creatable="false" sap:content-version="1"/>
+    <EntitySet Name="MaintenanceItemReasonText" EntityType="cds_api_maintenanceplan.MaintenanceItemReasonTextType" sap:creatable="false" sap:content-version="1"/>
+    <EntitySet Name="MaintenanceItemText" EntityType="cds_api_maintenanceplan.MaintenanceItemTextType" sap:creatable="false" sap:deletable="false" sap:content-version="1"/>
+    <EntitySet Name="MaintenancePlan" EntityType="cds_api_maintenanceplan.MaintenancePlanType" sap:deletable="false" sap:content-version="1"/>
+    <EntitySet Name="MaintenancePlanCycle" EntityType="cds_api_maintenanceplan.MaintenancePlanCycleType" sap:creatable="false" sap:deletable="false" sap:content-version="1"/>
+    <EntitySet Name="MaintenancePlanSchedule" EntityType="cds_api_maintenanceplan.MaintenancePlanScheduleType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+    <EntitySet Name="MaintenancePlanText" EntityType="cds_api_maintenanceplan.MaintenancePlanTextType" sap:creatable="false" sap:deletable="false" sap:content-version="1"/>
+    <EntitySet Name="MaintItemObjectListItem" EntityType="cds_api_maintenanceplan.MaintItemObjectListItemType" sap:creatable="false" sap:content-version="1"/>
+    <EntitySet Name="MaintenancePlanCallObject" EntityType="cds_api_maintenanceplan.MaintenancePlanCallObject_Type" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+    <EntitySet Name="MaintPlanClfnCharValue" EntityType="cds_api_maintenanceplan.MaintPlanClfnCharValueType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+    <EntitySet Name="MaintPlanClfnClass" EntityType="cds_api_maintenanceplan.MaintPlanClfnClassType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+    <EntitySet Name="MaintPlanClfnClassChar" EntityType="cds_api_maintenanceplan.MaintPlanClfnClassCharType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+    <EntitySet Name="MaintenancePlanStrategyCycle" EntityType="cds_api_maintenanceplan.MaintenancePlanStrategyCycle_Type" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+    <AssociationSet Name="assoc_633A0222D96034C87156B01A5868C93A" Association="cds_api_maintenanceplan.assoc_633A0222D96034C87156B01A5868C93A" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+     <End EntitySet="MaintenancePlan" Role="FromRole_assoc_633A0222D96034C87156B01A5868C93A"/>
+     <End EntitySet="MaintPlanClfnClass" Role="ToRole_assoc_633A0222D96034C87156B01A5868C93A"/>
+    </AssociationSet>
+    <AssociationSet Name="assoc_46DACA4DE267506660BAEEC1E83AA788" Association="cds_api_maintenanceplan.assoc_46DACA4DE267506660BAEEC1E83AA788" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+     <End EntitySet="MaintItemObjectListItem" Role="FromRole_assoc_46DACA4DE267506660BAEEC1E83AA788"/>
+     <End EntitySet="MaintenanceItem" Role="ToRole_assoc_46DACA4DE267506660BAEEC1E83AA788"/>
+    </AssociationSet>
+    <AssociationSet Name="assoc_8EB0E50DFF0D5E645753E42E8820A54C" Association="cds_api_maintenanceplan.assoc_8EB0E50DFF0D5E645753E42E8820A54C" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+     <End EntitySet="MaintPlanClfnClassChar" Role="FromRole_assoc_8EB0E50DFF0D5E645753E42E8820A54C"/>
+     <End EntitySet="MaintPlanClfnCharValue" Role="ToRole_assoc_8EB0E50DFF0D5E645753E42E8820A54C"/>
+    </AssociationSet>
+    <AssociationSet Name="assoc_808114E364F980B05C0B20FD95226729" Association="cds_api_maintenanceplan.assoc_808114E364F980B05C0B20FD95226729" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+     <End EntitySet="MaintenancePlan" Role="FromRole_assoc_808114E364F980B05C0B20FD95226729"/>
+     <End EntitySet="MaintenancePlanCycle" Role="ToRole_assoc_808114E364F980B05C0B20FD95226729"/>
+    </AssociationSet>
+    <AssociationSet Name="assoc_2905A8C19B8A8AE585ED51AF11725FF9" Association="cds_api_maintenanceplan.assoc_2905A8C19B8A8AE585ED51AF11725FF9" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+     <End EntitySet="MaintenancePlanSchedule" Role="FromRole_assoc_2905A8C19B8A8AE585ED51AF11725FF9"/>
+     <End EntitySet="MaintenancePlanCallObject" Role="ToRole_assoc_2905A8C19B8A8AE585ED51AF11725FF9"/>
+    </AssociationSet>
+    <AssociationSet Name="assoc_2D4FABC5ED15DEA580192FDCC39874FD" Association="cds_api_maintenanceplan.assoc_2D4FABC5ED15DEA580192FDCC39874FD" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+     <End EntitySet="MaintPlanClfnClassChar" Role="FromRole_assoc_2D4FABC5ED15DEA580192FDCC39874FD"/>
+     <End EntitySet="MaintPlanClfnClass" Role="ToRole_assoc_2D4FABC5ED15DEA580192FDCC39874FD"/>
+    </AssociationSet>
+    <AssociationSet Name="assoc_33951E0F81898A5CDEF081C801F6816F" Association="cds_api_maintenanceplan.assoc_33951E0F81898A5CDEF081C801F6816F" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+     <End EntitySet="MaintenanceItemCauseText" Role="FromRole_assoc_33951E0F81898A5CDEF081C801F6816F"/>
+     <End EntitySet="MaintenanceItem" Role="ToRole_assoc_33951E0F81898A5CDEF081C801F6816F"/>
+    </AssociationSet>
+    <AssociationSet Name="assoc_19DEDAADF4EBDAD8816485C9AEC01509" Association="cds_api_maintenanceplan.assoc_19DEDAADF4EBDAD8816485C9AEC01509" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+     <End EntitySet="MaintenanceItemCause" Role="FromRole_assoc_19DEDAADF4EBDAD8816485C9AEC01509"/>
+     <End EntitySet="MaintenanceItem" Role="ToRole_assoc_19DEDAADF4EBDAD8816485C9AEC01509"/>
+    </AssociationSet>
+    <AssociationSet Name="assoc_ED2EE33FB914C2F33785DC4F1E133B02" Association="cds_api_maintenanceplan.assoc_ED2EE33FB914C2F33785DC4F1E133B02" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+     <End EntitySet="MaintenanceItem" Role="FromRole_assoc_ED2EE33FB914C2F33785DC4F1E133B02"/>
+     <End EntitySet="MaintenancePlanCallObject" Role="ToRole_assoc_ED2EE33FB914C2F33785DC4F1E133B02"/>
+    </AssociationSet>
+    <AssociationSet Name="assoc_C3F0FBB0C8DF0A7CE904ACB476F7553F" Association="cds_api_maintenanceplan.assoc_C3F0FBB0C8DF0A7CE904ACB476F7553F" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+     <End EntitySet="MaintenanceItemCauseText" Role="FromRole_assoc_C3F0FBB0C8DF0A7CE904ACB476F7553F"/>
+     <End EntitySet="MaintenanceItemCause" Role="ToRole_assoc_C3F0FBB0C8DF0A7CE904ACB476F7553F"/>
+    </AssociationSet>
+    <AssociationSet Name="assoc_E149497EF94BDC05D23BEBDACA98D13E" Association="cds_api_maintenanceplan.assoc_E149497EF94BDC05D23BEBDACA98D13E" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+     <End EntitySet="MaintenanceItem" Role="FromRole_assoc_E149497EF94BDC05D23BEBDACA98D13E"/>
+     <End EntitySet="MaintenanceItemReason" Role="ToRole_assoc_E149497EF94BDC05D23BEBDACA98D13E"/>
+    </AssociationSet>
+    <AssociationSet Name="assoc_4B710278141E00E72B3B05027BF25431" Association="cds_api_maintenanceplan.assoc_4B710278141E00E72B3B05027BF25431" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+     <End EntitySet="MaintenanceItem" Role="FromRole_assoc_4B710278141E00E72B3B05027BF25431"/>
+     <End EntitySet="MaintItemObjectListItem" Role="ToRole_assoc_4B710278141E00E72B3B05027BF25431"/>
+    </AssociationSet>
+    <AssociationSet Name="assoc_9FE10E86AA0F60BBCC86BCFF064ABC38" Association="cds_api_maintenanceplan.assoc_9FE10E86AA0F60BBCC86BCFF064ABC38" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+     <End EntitySet="MaintenancePlan" Role="FromRole_assoc_9FE10E86AA0F60BBCC86BCFF064ABC38"/>
+     <End EntitySet="MaintenancePlanSchedule" Role="ToRole_assoc_9FE10E86AA0F60BBCC86BCFF064ABC38"/>
+    </AssociationSet>
+    <AssociationSet Name="assoc_811F3BC6F9A34CE2853C2A2371BE04A2" Association="cds_api_maintenanceplan.assoc_811F3BC6F9A34CE2853C2A2371BE04A2" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+     <End EntitySet="MaintenanceItem" Role="FromRole_assoc_811F3BC6F9A34CE2853C2A2371BE04A2"/>
+     <End EntitySet="MaintenanceItemCause" Role="ToRole_assoc_811F3BC6F9A34CE2853C2A2371BE04A2"/>
+    </AssociationSet>
+    <AssociationSet Name="assoc_B67E0BEFB2291A9D1F752ABAD9E0F2D9" Association="cds_api_maintenanceplan.assoc_B67E0BEFB2291A9D1F752ABAD9E0F2D9" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+     <End EntitySet="MaintPlanClfnClass" Role="FromRole_assoc_B67E0BEFB2291A9D1F752ABAD9E0F2D9"/>
+     <End EntitySet="MaintPlanClfnClassChar" Role="ToRole_assoc_B67E0BEFB2291A9D1F752ABAD9E0F2D9"/>
+    </AssociationSet>
+    <AssociationSet Name="assoc_8AAE23A4C51579B3D9873D534B291C6B" Association="cds_api_maintenanceplan.assoc_8AAE23A4C51579B3D9873D534B291C6B" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+     <End EntitySet="MaintenanceItemText" Role="FromRole_assoc_8AAE23A4C51579B3D9873D534B291C6B"/>
+     <End EntitySet="MaintenanceItem" Role="ToRole_assoc_8AAE23A4C51579B3D9873D534B291C6B"/>
+    </AssociationSet>
+    <AssociationSet Name="assoc_45F7393613D752EA8348313523A26D0B" Association="cds_api_maintenanceplan.assoc_45F7393613D752EA8348313523A26D0B" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+     <End EntitySet="MaintPlanClfnCharValue" Role="FromRole_assoc_45F7393613D752EA8348313523A26D0B"/>
+     <End EntitySet="MaintPlanClfnClassChar" Role="ToRole_assoc_45F7393613D752EA8348313523A26D0B"/>
+    </AssociationSet>
+    <AssociationSet Name="assoc_0D61A8B9388C481BDD2E188AE1059C1D" Association="cds_api_maintenanceplan.assoc_0D61A8B9388C481BDD2E188AE1059C1D" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+     <End EntitySet="MaintPlanClfnCharValue" Role="FromRole_assoc_0D61A8B9388C481BDD2E188AE1059C1D"/>
+     <End EntitySet="MaintPlanClfnClass" Role="ToRole_assoc_0D61A8B9388C481BDD2E188AE1059C1D"/>
+    </AssociationSet>
+    <AssociationSet Name="assoc_20ED92DAB57ECE5E02B063901F1C04AD" Association="cds_api_maintenanceplan.assoc_20ED92DAB57ECE5E02B063901F1C04AD" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+     <End EntitySet="MaintenanceItemReasonText" Role="FromRole_assoc_20ED92DAB57ECE5E02B063901F1C04AD"/>
+     <End EntitySet="MaintenanceItemReason" Role="ToRole_assoc_20ED92DAB57ECE5E02B063901F1C04AD"/>
+    </AssociationSet>
+    <AssociationSet Name="assoc_BD949FC3A4E1A08D66ACD56BBDD8EAAD" Association="cds_api_maintenanceplan.assoc_BD949FC3A4E1A08D66ACD56BBDD8EAAD" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+     <End EntitySet="MaintenancePlanCycle" Role="FromRole_assoc_BD949FC3A4E1A08D66ACD56BBDD8EAAD"/>
+     <End EntitySet="MaintenancePlan" Role="ToRole_assoc_BD949FC3A4E1A08D66ACD56BBDD8EAAD"/>
+    </AssociationSet>
+    <AssociationSet Name="assoc_119699D72A495C26249C6BCE97F2BEA2" Association="cds_api_maintenanceplan.assoc_119699D72A495C26249C6BCE97F2BEA2" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+     <End EntitySet="MaintenanceItemReasonText" Role="FromRole_assoc_119699D72A495C26249C6BCE97F2BEA2"/>
+     <End EntitySet="MaintenanceItem" Role="ToRole_assoc_119699D72A495C26249C6BCE97F2BEA2"/>
+    </AssociationSet>
+    <AssociationSet Name="assoc_2C7A7DADB69F4F62811F79D0C3A0D6E6" Association="cds_api_maintenanceplan.assoc_2C7A7DADB69F4F62811F79D0C3A0D6E6" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+     <End EntitySet="MaintenancePlan" Role="FromRole_assoc_2C7A7DADB69F4F62811F79D0C3A0D6E6"/>
+     <End EntitySet="MaintenancePlanStrategyCycle" Role="ToRole_assoc_2C7A7DADB69F4F62811F79D0C3A0D6E6"/>
+    </AssociationSet>
+    <AssociationSet Name="assoc_15F5EB5C6E38373703381E82315FF47A" Association="cds_api_maintenanceplan.assoc_15F5EB5C6E38373703381E82315FF47A" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+     <End EntitySet="MaintenancePlan" Role="FromRole_assoc_15F5EB5C6E38373703381E82315FF47A"/>
+     <End EntitySet="MaintenanceItem" Role="ToRole_assoc_15F5EB5C6E38373703381E82315FF47A"/>
+    </AssociationSet>
+    <AssociationSet Name="assoc_63AF618F9A4C25A022C7E6CD12C1C806" Association="cds_api_maintenanceplan.assoc_63AF618F9A4C25A022C7E6CD12C1C806" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+     <End EntitySet="MaintenancePlanText" Role="FromRole_assoc_63AF618F9A4C25A022C7E6CD12C1C806"/>
+     <End EntitySet="MaintenancePlan" Role="ToRole_assoc_63AF618F9A4C25A022C7E6CD12C1C806"/>
+    </AssociationSet>
+    <AssociationSet Name="assoc_172563363C0F07BA9451856421F6666C" Association="cds_api_maintenanceplan.assoc_172563363C0F07BA9451856421F6666C" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+     <End EntitySet="MaintenanceItemReason" Role="FromRole_assoc_172563363C0F07BA9451856421F6666C"/>
+     <End EntitySet="MaintenanceItemReasonText" Role="ToRole_assoc_172563363C0F07BA9451856421F6666C"/>
+    </AssociationSet>
+    <AssociationSet Name="assoc_9DA82BF69497585FD83C8B23088A6A54" Association="cds_api_maintenanceplan.assoc_9DA82BF69497585FD83C8B23088A6A54" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+     <End EntitySet="MaintenanceItemCause" Role="FromRole_assoc_9DA82BF69497585FD83C8B23088A6A54"/>
+     <End EntitySet="MaintenanceItemCauseText" Role="ToRole_assoc_9DA82BF69497585FD83C8B23088A6A54"/>
+    </AssociationSet>
+    <AssociationSet Name="assoc_BD9243D582EABF5CC3618C596ED96155" Association="cds_api_maintenanceplan.assoc_BD9243D582EABF5CC3618C596ED96155" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+     <End EntitySet="MaintenanceItemReason" Role="FromRole_assoc_BD9243D582EABF5CC3618C596ED96155"/>
+     <End EntitySet="MaintenanceItem" Role="ToRole_assoc_BD9243D582EABF5CC3618C596ED96155"/>
+    </AssociationSet>
+    <AssociationSet Name="assoc_A82C2BFE56D1D9B5A93F4BE03599B7A8" Association="cds_api_maintenanceplan.assoc_A82C2BFE56D1D9B5A93F4BE03599B7A8" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+     <End EntitySet="MaintenancePlan" Role="FromRole_assoc_A82C2BFE56D1D9B5A93F4BE03599B7A8"/>
+     <End EntitySet="MaintenancePlanText" Role="ToRole_assoc_A82C2BFE56D1D9B5A93F4BE03599B7A8"/>
+    </AssociationSet>
+    <AssociationSet Name="assoc_840CD2D7DE151A3AEF37F9ACD7669146" Association="cds_api_maintenanceplan.assoc_840CD2D7DE151A3AEF37F9ACD7669146" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+     <End EntitySet="MaintenanceItem" Role="FromRole_assoc_840CD2D7DE151A3AEF37F9ACD7669146"/>
+     <End EntitySet="MaintenanceItemText" Role="ToRole_assoc_840CD2D7DE151A3AEF37F9ACD7669146"/>
+    </AssociationSet>
+    <FunctionImport Name="AssignMaintItemToMaintPlan" ReturnType="cds_api_maintenanceplan.MaintenancePlanType" EntitySet="MaintenancePlan" m:HttpMethod="POST" sap:action-for="cds_api_maintenanceplan.MaintenancePlanType">
+     <Parameter Name="MaintenancePlan" Type="Edm.String" Mode="In" MaxLength="12" sap:label="Maintenance Plan">
+      <Documentation>
+       <Summary>Maintenance Plan</Summary>
+       <LongDescription/>
+      </Documentation>
+     </Parameter>
+     <Parameter Name="Maintenanceitem" Type="Edm.String" Mode="In" MaxLength="16" sap:label="Maintenance Item">
+      <Documentation>
+       <Summary>Maintenance Item</Summary>
+       <LongDescription/>
+      </Documentation>
+     </Parameter>
+    </FunctionImport>
+    <FunctionImport Name="ResetMaintPlanStsMrkdForDeltn" ReturnType="cds_api_maintenanceplan.DummyFunctionImportResult" m:HttpMethod="POST" sap:action-for="cds_api_maintenanceplan.MaintenancePlanType">
+     <Parameter Name="MaintenancePlan" Type="Edm.String" Mode="In" MaxLength="12" sap:label="Maintenance Plan">
+      <Documentation>
+       <Summary>Maintenance Plan</Summary>
+       <LongDescription/>
+      </Documentation>
+     </Parameter>
+    </FunctionImport>
+    <FunctionImport Name="RestartMaintPlnSchedule" ReturnType="cds_api_maintenanceplan.MaintenancePlanType" EntitySet="MaintenancePlan" m:HttpMethod="POST" sap:action-for="cds_api_maintenanceplan.MaintenancePlanType">
+     <Parameter Name="MaintenancePlan" Type="Edm.String" Mode="In" MaxLength="12" sap:label="Maintenance Plan">
+      <Documentation>
+       <Summary>Maintenance Plan</Summary>
+       <LongDescription/>
+      </Documentation>
+     </Parameter>
+     <Parameter Name="SchedulingStartDate" Type="Edm.DateTime" Mode="In" Precision="0" Nullable="true" sap:label="Start of cycle" sap:display-format="Date">
+      <Documentation>
+       <Summary>Start of cycle</Summary>
+       <LongDescription/>
+      </Documentation>
+     </Parameter>
+     <Parameter Name="SchedulingStartTime" Type="Edm.Time" Mode="In" Precision="0" Nullable="true" sap:label="Start Time">
+      <Documentation>
+       <Summary>Start Time</Summary>
+       <LongDescription/>
+      </Documentation>
+     </Parameter>
+     <Parameter Name="MaintPlanStartCntrReadingValue" Type="Edm.String" Mode="In" MaxLength="22" Nullable="true" sap:label="StartCounterReading">
+      <Documentation>
+       <Summary>StartCounterReading</Summary>
+       <LongDescription/>
+      </Documentation>
+     </Parameter>
+     <Parameter Name="MaintPlanSchedFutrCallsAreKept" Type="Edm.Boolean" Mode="In" Nullable="true" sap:label="Boolean Variable (X = True, - = False, Space = Unknown)">
+      <Documentation>
+       <Summary>Boolean Variable (X = True, - = False, Space = Unknown)</Summary>
+       <LongDescription/>
+      </Documentation>
+     </Parameter>
+    </FunctionImport>
+    <FunctionImport Name="SetMainPlanStsToMrkdForDeltn" ReturnType="cds_api_maintenanceplan.DummyFunctionImportResult" m:HttpMethod="POST" sap:action-for="cds_api_maintenanceplan.MaintenancePlanType">
+     <Parameter Name="MaintenancePlan" Type="Edm.String" Mode="In" MaxLength="12" sap:label="Maintenance Plan">
+      <Documentation>
+       <Summary>Maintenance Plan</Summary>
+       <LongDescription/>
+      </Documentation>
+     </Parameter>
+    </FunctionImport>
+    <FunctionImport Name="SetMaintPlanStatusToActive" ReturnType="cds_api_maintenanceplan.DummyFunctionImportResult" m:HttpMethod="POST" sap:action-for="cds_api_maintenanceplan.MaintenancePlanType">
+     <Parameter Name="MaintenancePlan" Type="Edm.String" Mode="In" MaxLength="12" sap:label="Maintenance Plan">
+      <Documentation>
+       <Summary>Maintenance Plan</Summary>
+       <LongDescription/>
+      </Documentation>
+     </Parameter>
+    </FunctionImport>
+    <FunctionImport Name="SetMaintPlanStatusToInactive" ReturnType="cds_api_maintenanceplan.DummyFunctionImportResult" m:HttpMethod="POST" sap:action-for="cds_api_maintenanceplan.MaintenancePlanType">
+     <Parameter Name="MaintenancePlan" Type="Edm.String" Mode="In" MaxLength="12" sap:label="Maintenance Plan">
+      <Documentation>
+       <Summary>Maintenance Plan</Summary>
+       <LongDescription/>
+      </Documentation>
+     </Parameter>
+    </FunctionImport>
+    <FunctionImport Name="StartMaintPlnSchedule" ReturnType="cds_api_maintenanceplan.MaintenancePlanType" EntitySet="MaintenancePlan" m:HttpMethod="POST" sap:action-for="cds_api_maintenanceplan.MaintenancePlanType">
+     <Parameter Name="MaintenancePlan" Type="Edm.String" Mode="In" MaxLength="12" sap:label="Maintenance Plan">
+      <Documentation>
+       <Summary>Maintenance Plan</Summary>
+       <LongDescription/>
+      </Documentation>
+     </Parameter>
+     <Parameter Name="SchedulingStartDate" Type="Edm.DateTime" Mode="In" Precision="0" Nullable="true" sap:label="Start of cycle" sap:display-format="Date">
+      <Documentation>
+       <Summary>Start of cycle</Summary>
+       <LongDescription/>
+      </Documentation>
+     </Parameter>
+     <Parameter Name="SchedulingStartTime" Type="Edm.Time" Mode="In" Precision="0" Nullable="true" sap:label="Start Time">
+      <Documentation>
+       <Summary>Start Time</Summary>
+       <LongDescription/>
+      </Documentation>
+     </Parameter>
+     <Parameter Name="MaintPlanStartCntrReadingValue" Type="Edm.String" Mode="In" MaxLength="22" Nullable="true" sap:label="StartCounterReading">
+      <Documentation>
+       <Summary>StartCounterReading</Summary>
+       <LongDescription/>
+      </Documentation>
+     </Parameter>
+     <Parameter Name="MaintPlnSchedgCallObjUpToDte" Type="Edm.DateTime" Mode="In" Precision="0" Nullable="true" sap:label="Current Date" sap:display-format="Date">
+      <Documentation>
+       <Summary>Current Date</Summary>
+       <LongDescription/>
+      </Documentation>
+     </Parameter>
+    </FunctionImport>
+   </EntityContainer>
+   <Annotations Target="cds_api_maintenanceplan.cds_api_maintenanceplan_Entities" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+    <Annotation Term="Common.ApplyMultiUnitBehaviorForSortingAndFiltering" Bool="true"/>
+   </Annotations>
+   <Annotations Target="cds_api_maintenanceplan.MaintenanceItemCauseTextType/Language" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+    <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+    <Annotation Term="Core.Immutable"/>
+   </Annotations>
+   <Annotations Target="cds_api_maintenanceplan.MaintenanceItemReasonTextType/Language" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+    <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+    <Annotation Term="Core.Immutable"/>
+   </Annotations>
+   <Annotations Target="cds_api_maintenanceplan.MaintenanceItemTextType/Language" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+    <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+    <Annotation Term="Core.Immutable"/>
+   </Annotations>
+   <Annotations Target="cds_api_maintenanceplan.MaintenanceItemType/MaintenanceItemDescription" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+    <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+   </Annotations>
+   <Annotations Target="cds_api_maintenanceplan.MaintenanceItemType/MaintenancePlanCategory" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+    <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+    <Annotation Term="Core.Immutable"/>
+   </Annotations>
+   <Annotations Target="cds_api_maintenanceplan.MaintenancePlanTextType/Language" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+    <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+    <Annotation Term="Core.Immutable"/>
+   </Annotations>
+   <Annotations Target="cds_api_maintenanceplan.MaintenancePlanType/MaintenancePlanCategory" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+    <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+   </Annotations>
+   <Annotations Target="cds_api_maintenanceplan.MaintenancePlanType/MaintenancePlanDesc" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+    <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+   </Annotations>
+   <Annotations Target="cds_api_maintenanceplan.cds_api_maintenanceplan_Entities/MaintItemObjectListItem" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+    <Annotation Term="Capabilities.FilterRestrictions">
+     <Record>
+      <PropertyValue Property="NonFilterableProperties">
+       <Collection/>
+      </PropertyValue>
+     </Record>
+    </Annotation>
+    <Annotation Term="Capabilities.SortRestrictions">
+     <Record>
+      <PropertyValue Property="NonSortableProperties">
+       <Collection/>
+      </PropertyValue>
+     </Record>
+    </Annotation>
+   </Annotations>
+   <Annotations Target="cds_api_maintenanceplan.cds_api_maintenanceplan_Entities/MaintenanceItem" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+    <Annotation Term="Capabilities.FilterRestrictions">
+     <Record>
+      <PropertyValue Property="NonFilterableProperties">
+       <Collection/>
+      </PropertyValue>
+     </Record>
+    </Annotation>
+    <Annotation Term="Capabilities.NavigationRestrictions">
+     <Record>
+      <PropertyValue Property="RestrictedProperties">
+       <Collection>
+        <Record>
+         <PropertyValue Property="NavigationProperty" NavigationPropertyPath="to_LongText"/>
+         <PropertyValue Property="InsertRestrictions">
+          <Record>
+           <PropertyValue Property="Insertable" Bool="true"/>
+          </Record>
+         </PropertyValue>
+        </Record>
+        <Record>
+         <PropertyValue Property="NavigationProperty" NavigationPropertyPath="to_MaintItemObjectListItem"/>
+         <PropertyValue Property="InsertRestrictions">
+          <Record>
+           <PropertyValue Property="Insertable" Bool="true"/>
+          </Record>
+         </PropertyValue>
+        </Record>
+        <Record>
+         <PropertyValue Property="NavigationProperty" NavigationPropertyPath="to_MaintenanceItemCause"/>
+         <PropertyValue Property="InsertRestrictions">
+          <Record>
+           <PropertyValue Property="Insertable" Bool="true"/>
+          </Record>
+         </PropertyValue>
+        </Record>
+        <Record>
+         <PropertyValue Property="NavigationProperty" NavigationPropertyPath="to_MaintenanceItemReason"/>
+         <PropertyValue Property="InsertRestrictions">
+          <Record>
+           <PropertyValue Property="Insertable" Bool="true"/>
+          </Record>
+         </PropertyValue>
+        </Record>
+       </Collection>
+      </PropertyValue>
+     </Record>
+    </Annotation>
+    <Annotation Term="Capabilities.SortRestrictions">
+     <Record>
+      <PropertyValue Property="NonSortableProperties">
+       <Collection/>
+      </PropertyValue>
+     </Record>
+    </Annotation>
+   </Annotations>
+   <Annotations Target="cds_api_maintenanceplan.cds_api_maintenanceplan_Entities/MaintenanceItemCause" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+    <Annotation Term="Capabilities.FilterRestrictions">
+     <Record>
+      <PropertyValue Property="NonFilterableProperties">
+       <Collection/>
+      </PropertyValue>
+     </Record>
+    </Annotation>
+    <Annotation Term="Capabilities.NavigationRestrictions">
+     <Record>
+      <PropertyValue Property="RestrictedProperties">
+       <Collection>
+        <Record>
+         <PropertyValue Property="NavigationProperty" NavigationPropertyPath="to_MaintenanceItemCauseText"/>
+         <PropertyValue Property="InsertRestrictions">
+          <Record>
+           <PropertyValue Property="Insertable" Bool="true"/>
+          </Record>
+         </PropertyValue>
+        </Record>
+       </Collection>
+      </PropertyValue>
+     </Record>
+    </Annotation>
+    <Annotation Term="Capabilities.SortRestrictions">
+     <Record>
+      <PropertyValue Property="NonSortableProperties">
+       <Collection/>
+      </PropertyValue>
+     </Record>
+    </Annotation>
+   </Annotations>
+   <Annotations Target="cds_api_maintenanceplan.cds_api_maintenanceplan_Entities/MaintenanceItemCauseText" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+    <Annotation Term="Capabilities.FilterRestrictions">
+     <Record>
+      <PropertyValue Property="FilterExpressionRestrictions">
+       <Collection>
+        <Record>
+         <PropertyValue Property="Property" PropertyPath="PlainLongText"/>
+         <PropertyValue Property="AllowedExpressions" String="SearchExpression"/>
+        </Record>
+       </Collection>
+      </PropertyValue>
+      <PropertyValue Property="NonFilterableProperties">
+       <Collection/>
+      </PropertyValue>
+     </Record>
+    </Annotation>
+    <Annotation Term="Capabilities.SortRestrictions">
+     <Record>
+      <PropertyValue Property="NonSortableProperties">
+       <Collection>
+        <PropertyPath>PlainLongText</PropertyPath>
+       </Collection>
+      </PropertyValue>
+     </Record>
+    </Annotation>
+   </Annotations>
+   <Annotations Target="cds_api_maintenanceplan.cds_api_maintenanceplan_Entities/MaintenanceItemReason" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+    <Annotation Term="Capabilities.FilterRestrictions">
+     <Record>
+      <PropertyValue Property="NonFilterableProperties">
+       <Collection/>
+      </PropertyValue>
+     </Record>
+    </Annotation>
+    <Annotation Term="Capabilities.NavigationRestrictions">
+     <Record>
+      <PropertyValue Property="RestrictedProperties">
+       <Collection>
+        <Record>
+         <PropertyValue Property="NavigationProperty" NavigationPropertyPath="to_MaintenanceItemReasonText"/>
+         <PropertyValue Property="InsertRestrictions">
+          <Record>
+           <PropertyValue Property="Insertable" Bool="true"/>
+          </Record>
+         </PropertyValue>
+        </Record>
+       </Collection>
+      </PropertyValue>
+     </Record>
+    </Annotation>
+    <Annotation Term="Capabilities.SortRestrictions">
+     <Record>
+      <PropertyValue Property="NonSortableProperties">
+       <Collection/>
+      </PropertyValue>
+     </Record>
+    </Annotation>
+   </Annotations>
+   <Annotations Target="cds_api_maintenanceplan.cds_api_maintenanceplan_Entities/MaintenanceItemReasonText" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+    <Annotation Term="Capabilities.FilterRestrictions">
+     <Record>
+      <PropertyValue Property="FilterExpressionRestrictions">
+       <Collection>
+        <Record>
+         <PropertyValue Property="Property" PropertyPath="PlainLongText"/>
+         <PropertyValue Property="AllowedExpressions" String="SearchExpression"/>
+        </Record>
+       </Collection>
+      </PropertyValue>
+      <PropertyValue Property="NonFilterableProperties">
+       <Collection/>
+      </PropertyValue>
+     </Record>
+    </Annotation>
+    <Annotation Term="Capabilities.SortRestrictions">
+     <Record>
+      <PropertyValue Property="NonSortableProperties">
+       <Collection>
+        <PropertyPath>PlainLongText</PropertyPath>
+       </Collection>
+      </PropertyValue>
+     </Record>
+    </Annotation>
+   </Annotations>
+   <Annotations Target="cds_api_maintenanceplan.cds_api_maintenanceplan_Entities/MaintenanceItemText" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+    <Annotation Term="Capabilities.FilterRestrictions">
+     <Record>
+      <PropertyValue Property="FilterExpressionRestrictions">
+       <Collection>
+        <Record>
+         <PropertyValue Property="Property" PropertyPath="MaintenanceItemLongText"/>
+         <PropertyValue Property="AllowedExpressions" String="SearchExpression"/>
+        </Record>
+       </Collection>
+      </PropertyValue>
+      <PropertyValue Property="NonFilterableProperties">
+       <Collection/>
+      </PropertyValue>
+     </Record>
+    </Annotation>
+    <Annotation Term="Capabilities.SortRestrictions">
+     <Record>
+      <PropertyValue Property="NonSortableProperties">
+       <Collection>
+        <PropertyPath>MaintenanceItemLongText</PropertyPath>
+       </Collection>
+      </PropertyValue>
+     </Record>
+    </Annotation>
+   </Annotations>
+   <Annotations Target="cds_api_maintenanceplan.cds_api_maintenanceplan_Entities/MaintenancePlan" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+    <Annotation Term="Capabilities.FilterRestrictions">
+     <Record>
+      <PropertyValue Property="NonFilterableProperties">
+       <Collection>
+        <PropertyPath>MaintenancePlanSystemStatus</PropertyPath>
+       </Collection>
+      </PropertyValue>
+     </Record>
+    </Annotation>
+    <Annotation Term="Capabilities.NavigationRestrictions">
+     <Record>
+      <PropertyValue Property="RestrictedProperties">
+       <Collection>
+        <Record>
+         <PropertyValue Property="NavigationProperty" NavigationPropertyPath="to_Item"/>
+         <PropertyValue Property="InsertRestrictions">
+          <Record>
+           <PropertyValue Property="Insertable" Bool="true"/>
+          </Record>
+         </PropertyValue>
+        </Record>
+        <Record>
+         <PropertyValue Property="NavigationProperty" NavigationPropertyPath="to_LongText"/>
+         <PropertyValue Property="InsertRestrictions">
+          <Record>
+           <PropertyValue Property="Insertable" Bool="true"/>
+          </Record>
+         </PropertyValue>
+        </Record>
+        <Record>
+         <PropertyValue Property="NavigationProperty" NavigationPropertyPath="to_MaintenanceCycle"/>
+         <PropertyValue Property="InsertRestrictions">
+          <Record>
+           <PropertyValue Property="Insertable" Bool="true"/>
+          </Record>
+         </PropertyValue>
+        </Record>
+       </Collection>
+      </PropertyValue>
+     </Record>
+    </Annotation>
+    <Annotation Term="Capabilities.SortRestrictions">
+     <Record>
+      <PropertyValue Property="NonSortableProperties">
+       <Collection>
+        <PropertyPath>MaintenancePlanSystemStatus</PropertyPath>
+       </Collection>
+      </PropertyValue>
+     </Record>
+    </Annotation>
+   </Annotations>
+   <Annotations Target="cds_api_maintenanceplan.cds_api_maintenanceplan_Entities/MaintenancePlanCycle" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+    <Annotation Term="Capabilities.FilterRestrictions">
+     <Record>
+      <PropertyValue Property="NonFilterableProperties">
+       <Collection/>
+      </PropertyValue>
+     </Record>
+    </Annotation>
+    <Annotation Term="Capabilities.SortRestrictions">
+     <Record>
+      <PropertyValue Property="NonSortableProperties">
+       <Collection/>
+      </PropertyValue>
+     </Record>
+    </Annotation>
+   </Annotations>
+   <Annotations Target="cds_api_maintenanceplan.cds_api_maintenanceplan_Entities/MaintenancePlanText" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+    <Annotation Term="Capabilities.FilterRestrictions">
+     <Record>
+      <PropertyValue Property="FilterExpressionRestrictions">
+       <Collection>
+        <Record>
+         <PropertyValue Property="Property" PropertyPath="MaintenancePlanLongText"/>
+         <PropertyValue Property="AllowedExpressions" String="SearchExpression"/>
+        </Record>
+       </Collection>
+      </PropertyValue>
+      <PropertyValue Property="NonFilterableProperties">
+       <Collection/>
+      </PropertyValue>
+     </Record>
+    </Annotation>
+    <Annotation Term="Capabilities.SortRestrictions">
+     <Record>
+      <PropertyValue Property="NonSortableProperties">
+       <Collection>
+        <PropertyPath>MaintenancePlanLongText</PropertyPath>
+       </Collection>
+      </PropertyValue>
+     </Record>
+    </Annotation>
+   </Annotations>
+   <Annotations Target="cds_api_maintenanceplan.MaintenancePlanType/MaintenancePlan" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+    <Annotation Term="Core.Immutable"/>
+   </Annotations>
+   <Annotations Target="cds_api_maintenanceplan.MaintenancePlanType/MaintenanceStrategy" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+    <Annotation Term="Core.Immutable"/>
+   </Annotations>
+   <Annotations Target="cds_api_maintenanceplan.cds_api_maintenanceplan_Entities" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+    <Annotation Term="Org.OData.Capabilities.V1.BatchSupport">
+     <Record Type="Org.OData.Capabilities.V1.BatchSupportType">
+      <PropertyValue Property="ReferencesAcrossChangeSetsSupported" Bool="true"/>
+     </Record>
+    </Annotation>
+   </Annotations>
+   <atom:link rel="self" href="https://host:port/sap/opu/odata/sap/API_MAINTENANCEPLAN/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+   <atom:link rel="latest-version" href="https://host:port/sap/opu/odata/sap/API_MAINTENANCEPLAN/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+  </Schema>
+ </edmx:DataServices>
+</edmx:Edmx>

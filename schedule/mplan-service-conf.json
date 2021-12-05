@@ -1,0 +1,8 @@
+{
+    "systemName": "CPAPP_S4HANA_CLOUD",
+    "communicationArrangement": {
+        "communicationArrangementName": "ZSAP_COM_0396",
+        "scenarioId": "SAP_COM_0396",
+        "inboundAuthentication": "BasicAuthentication"
+    }
+}

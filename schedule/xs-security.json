@@ -1,0 +1,33 @@
+{
+  "xsappname": "schedule-uaa",
+  "tenant-mode": "dedicated",
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.MaintenancePlanner",
+      "description": "MaintenancePlanner"
+    },
+    {
+      "name": "$XSAPPNAME.MaintenanceManager",
+      "description": "MaintenanceManager"
+    }
+  ],
+  "attributes": [],
+  "role-templates": [
+    {
+      "name": "MaintenancePlanner",
+      "description": "generated",
+      "scope-references": [
+        "$XSAPPNAME.MaintenancePlanner"
+      ],
+      "attribute-references": []
+    },
+    {
+      "name": "MaintenanceManager",
+      "description": "generated",
+      "scope-references": [
+        "$XSAPPNAME.MaintenanceManager"
+      ],
+      "attribute-references": []
+    }
+  ]
+}

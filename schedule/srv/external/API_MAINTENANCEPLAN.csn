@@ -1,0 +1,1441 @@
+{
+  "definitions": {
+    "API_MAINTENANCEPLAN": {
+      "kind": "service"
+    },
+    "API_MAINTENANCEPLAN.DummyFunctionImportResult": {
+      "kind": "type",
+      "elements": {
+        "IsInvalid": {
+          "type": "cds.Boolean"
+        }
+      }
+    },
+    "API_MAINTENANCEPLAN.MaintenanceItem": {
+      "kind": "entity",
+      "@cds.persistence.skip": true,
+      "elements": {
+        "MaintenanceItem": {
+          "key": true,
+          "type": "cds.String",
+          "length": 16
+        },
+        "MaintenanceItemDescription": {
+          "type": "cds.String",
+          "length": 40
+        },
+        "MaintenanceStrategy": {
+          "type": "cds.String",
+          "length": 6
+        },
+        "MaintenancePlanCategory": {
+          "type": "cds.String",
+          "length": 2
+        },
+        "MaintenancePlanCallObject": {
+          "type": "cds.String",
+          "length": 1
+        },
+        "MaintenancePlan": {
+          "type": "cds.String",
+          "length": 12
+        },
+        "MaintenancePlanItemPosition": {
+          "type": "cds.String",
+          "length": 4
+        },
+        "MaintenanceItemObjectList": {
+          "type": "cds.Integer64"
+        },
+        "FunctionalLocationLabelName": {
+          "type": "cds.String",
+          "length": 40
+        },
+        "Equipment": {
+          "type": "cds.String",
+          "length": 18
+        },
+        "Assembly": {
+          "type": "cds.String",
+          "length": 18
+        },
+        "AdditionalDeviceData": {
+          "type": "cds.String",
+          "length": 40
+        },
+        "TaskListType": {
+          "type": "cds.String",
+          "length": 1
+        },
+        "TaskListGroup": {
+          "type": "cds.String",
+          "length": 8
+        },
+        "TaskListGroupCounter": {
+          "type": "cds.String",
+          "length": 2
+        },
+        "OperationSystemCondition": {
+          "type": "cds.String",
+          "length": 1
+        },
+        "NumberOfTaskListExecutions": {
+          "type": "cds.Decimal",
+          "precision": 3,
+          "scale": 0
+        },
+        "MaintNotifTskIsAutomlyDtmnd": {
+          "type": "cds.String",
+          "length": 1
+        },
+        "MaintenancePlanningPlant": {
+          "type": "cds.String",
+          "length": 4
+        },
+        "MaintenancePlannerGroup": {
+          "type": "cds.String",
+          "length": 3
+        },
+        "MaintenanceOrderType": {
+          "type": "cds.String",
+          "length": 4
+        },
+        "NotificationType": {
+          "type": "cds.String",
+          "length": 2
+        },
+        "MaintenanceActivityType": {
+          "type": "cds.String",
+          "length": 3
+        },
+        "MainWorkCenter": {
+          "type": "cds.String",
+          "length": 8
+        },
+        "MainWorkCenterPlant": {
+          "type": "cds.String",
+          "length": 4
+        },
+        "MaintPriority": {
+          "type": "cds.String",
+          "length": 1
+        },
+        "MaintPriorityType": {
+          "type": "cds.String",
+          "length": 2
+        },
+        "BusinessArea": {
+          "type": "cds.String",
+          "length": 4
+        },
+        "ImmediateReleaseIsBlocked": {
+          "type": "cds.Boolean"
+        },
+        "Material": {
+          "type": "cds.String",
+          "length": 18
+        },
+        "SerialNumber": {
+          "type": "cds.String",
+          "length": 18
+        },
+        "ServiceDocumentType": {
+          "type": "cds.String",
+          "length": 4
+        },
+        "ServiceContract": {
+          "type": "cds.String",
+          "length": 10
+        },
+        "ServiceContractItem": {
+          "type": "cds.String",
+          "length": 6
+        },
+        "ServiceOrderTemplate": {
+          "type": "cds.String",
+          "length": 10
+        },
+        "ServiceDocumentPriority": {
+          "type": "cds.String",
+          "length": 1
+        },
+        "Product": {
+          "type": "cds.String",
+          "length": 18
+        },
+        "MaintenancePlant": {
+          "type": "cds.String",
+          "length": 4
+        },
+        "AssetLocation": {
+          "type": "cds.String",
+          "length": 10
+        },
+        "AssetRoom": {
+          "type": "cds.String",
+          "length": 8
+        },
+        "PlantSection": {
+          "type": "cds.String",
+          "length": 3
+        },
+        "WorkCenter": {
+          "type": "cds.String",
+          "length": 8
+        },
+        "ABCIndicator": {
+          "type": "cds.String",
+          "length": 1
+        },
+        "MaintObjectFreeDefinedAttrib": {
+          "type": "cds.String",
+          "length": 30
+        },
+        "CompanyCode": {
+          "type": "cds.String",
+          "length": 4
+        },
+        "MasterFixedAsset": {
+          "type": "cds.String",
+          "length": 12
+        },
+        "FixedAsset": {
+          "type": "cds.String",
+          "length": 4
+        },
+        "LocAcctAssgmtBusinessArea": {
+          "type": "cds.String",
+          "length": 4
+        },
+        "CostCenter": {
+          "type": "cds.String",
+          "length": 10
+        },
+        "ControllingArea": {
+          "type": "cds.String",
+          "length": 4
+        },
+        "WBSElement": {
+          "type": "cds.String",
+          "length": 24
+        },
+        "SettlementOrder": {
+          "type": "cds.String",
+          "length": 12
+        },
+        "CycleSetSequence": {
+          "type": "cds.String",
+          "length": 2
+        },
+        "StandingOrderNumber": {
+          "type": "cds.String",
+          "length": 12
+        },
+        "CreatedByUser": {
+          "type": "cds.String",
+          "length": 12
+        },
+        "CreationDate": {
+          "type": "cds.Date"
+        },
+        "LastChangeDate": {
+          "type": "cds.Date"
+        },
+        "LastChangedByUser": {
+          "type": "cds.String",
+          "length": 12
+        },
+        "LastChangeDateTime": {
+          "type": "cds.Timestamp"
+        },
+        "to_LongText": {
+          "type": "cds.Association",
+          "target": "API_MAINTENANCEPLAN.MaintenanceItemText",
+          "cardinality": {
+            "max": "*"
+          },
+          "on": [
+            {
+              "ref": [
+                "to_LongText",
+                "MaintenanceItem"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "MaintenanceItem"
+              ]
+            }
+          ]
+        },
+        "to_MaintenanceItemCause": {
+          "type": "cds.Association",
+          "target": "API_MAINTENANCEPLAN.MaintenanceItemCause",
+          "cardinality": {
+            "max": "*"
+          },
+          "on": [
+            {
+              "ref": [
+                "to_MaintenanceItemCause",
+                "MaintenanceItem"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "MaintenanceItem"
+              ]
+            }
+          ]
+        },
+        "to_MaintenanceItemReason": {
+          "type": "cds.Association",
+          "target": "API_MAINTENANCEPLAN.MaintenanceItemReason",
+          "cardinality": {
+            "max": "*"
+          },
+          "on": [
+            {
+              "ref": [
+                "to_MaintenanceItemReason",
+                "MaintenanceItem"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "MaintenanceItem"
+              ]
+            }
+          ]
+        },
+        "to_MaintItemObjectListItem": {
+          "type": "cds.Association",
+          "target": "API_MAINTENANCEPLAN.MaintItemObjectListItem",
+          "cardinality": {
+            "max": "*"
+          },
+          "on": [
+            {
+              "ref": [
+                "to_MaintItemObjectListItem",
+                "MaintenanceItem"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "MaintenanceItem"
+              ]
+            }
+          ]
+        },
+        "to_MaintPlanCallObjects": {
+          "type": "cds.Association",
+          "target": "API_MAINTENANCEPLAN.MaintenancePlanCallObject",
+          "cardinality": {
+            "max": "*"
+          }
+        }
+      }
+    },
+    "API_MAINTENANCEPLAN.MaintenanceItemCause": {
+      "kind": "entity",
+      "@cds.persistence.skip": true,
+      "elements": {
+        "MaintenanceItem": {
+          "key": true,
+          "type": "cds.String",
+          "length": 16
+        },
+        "NmbrOfMaintComplianceItems": {
+          "key": true,
+          "type": "cds.String",
+          "length": 4
+        },
+        "MaintenanceComplianceGroupCode": {
+          "type": "cds.String",
+          "length": 8
+        },
+        "MaintenanceComplianceCode": {
+          "type": "cds.String",
+          "length": 4
+        },
+        "MaintenanceComplianceTypeCode": {
+          "type": "cds.String",
+          "length": 1
+        },
+        "MaintComplianceCatalogCode": {
+          "type": "cds.String",
+          "length": 1
+        },
+        "MaintComplianceDescription": {
+          "type": "cds.String",
+          "length": 40
+        },
+        "MaintenancePackage": {
+          "type": "cds.String",
+          "length": 2
+        },
+        "MaintCmplRqIsLegallyBinding": {
+          "type": "cds.String",
+          "length": 1
+        },
+        "MaintCmplRqOriginCode": {
+          "type": "cds.String",
+          "length": 4
+        },
+        "CreatedByUser": {
+          "type": "cds.String",
+          "length": 12
+        },
+        "CreationDate": {
+          "type": "cds.Date"
+        },
+        "LastChangedByUser": {
+          "type": "cds.String",
+          "length": 12
+        },
+        "LastChangeDate": {
+          "type": "cds.Date"
+        },
+        "LastChangeDateTime": {
+          "type": "cds.Timestamp"
+        },
+        "to_MaintenanceItem": {
+          "type": "cds.Association",
+          "target": "API_MAINTENANCEPLAN.MaintenanceItem"
+        },
+        "to_MaintenanceItemCauseText": {
+          "type": "cds.Association",
+          "target": "API_MAINTENANCEPLAN.MaintenanceItemCauseText",
+          "cardinality": {
+            "max": "*"
+          },
+          "on": [
+            {
+              "ref": [
+                "to_MaintenanceItemCauseText",
+                "NmbrOfMaintComplianceItems"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "NmbrOfMaintComplianceItems"
+              ]
+            },
+            "and",
+            {
+              "ref": [
+                "to_MaintenanceItemCauseText",
+                "MaintenanceItem"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "MaintenanceItem"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "API_MAINTENANCEPLAN.MaintenanceItemCauseText": {
+      "kind": "entity",
+      "@cds.persistence.skip": true,
+      "elements": {
+        "MaintenanceItem": {
+          "key": true,
+          "type": "cds.String",
+          "length": 16
+        },
+        "NmbrOfMaintComplianceItems": {
+          "key": true,
+          "type": "cds.String",
+          "length": 4
+        },
+        "Language": {
+          "key": true,
+          "type": "cds.String",
+          "length": 2
+        },
+        "PlainLongText": {
+          "type": "cds.LargeString"
+        },
+        "to_MaintenanceItem": {
+          "type": "cds.Association",
+          "target": "API_MAINTENANCEPLAN.MaintenanceItem"
+        },
+        "to_MaintenanceItemCause": {
+          "type": "cds.Association",
+          "target": "API_MAINTENANCEPLAN.MaintenanceItemCause"
+        }
+      }
+    },
+    "API_MAINTENANCEPLAN.MaintenanceItemReason": {
+      "kind": "entity",
+      "@cds.persistence.skip": true,
+      "elements": {
+        "MaintenanceItem": {
+          "key": true,
+          "type": "cds.String",
+          "length": 16
+        },
+        "NmbrOfMaintComplianceItems": {
+          "key": true,
+          "type": "cds.String",
+          "length": 4
+        },
+        "MaintenanceComplianceGroupCode": {
+          "type": "cds.String",
+          "length": 8
+        },
+        "MaintenanceComplianceCode": {
+          "type": "cds.String",
+          "length": 4
+        },
+        "MaintenanceComplianceTypeCode": {
+          "type": "cds.String",
+          "length": 1
+        },
+        "MaintComplianceCatalogCode": {
+          "type": "cds.String",
+          "length": 1
+        },
+        "MaintComplianceDescription": {
+          "type": "cds.String",
+          "length": 40
+        },
+        "MaintenancePackage": {
+          "type": "cds.String",
+          "length": 2
+        },
+        "MaintCmplRqIsLegallyBinding": {
+          "type": "cds.String",
+          "length": 1
+        },
+        "MaintCmplRqOriginCode": {
+          "type": "cds.String",
+          "length": 4
+        },
+        "CreatedByUser": {
+          "type": "cds.String",
+          "length": 12
+        },
+        "CreationDate": {
+          "type": "cds.Date"
+        },
+        "LastChangedByUser": {
+          "type": "cds.String",
+          "length": 12
+        },
+        "LastChangeDate": {
+          "type": "cds.Date"
+        },
+        "LastChangeDateTime": {
+          "type": "cds.Timestamp"
+        },
+        "to_MaintenanceItem": {
+          "type": "cds.Association",
+          "target": "API_MAINTENANCEPLAN.MaintenanceItem"
+        },
+        "to_MaintenanceItemReasonText": {
+          "type": "cds.Association",
+          "target": "API_MAINTENANCEPLAN.MaintenanceItemReasonText",
+          "cardinality": {
+            "max": "*"
+          },
+          "on": [
+            {
+              "ref": [
+                "to_MaintenanceItemReasonText",
+                "NmbrOfMaintComplianceItems"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "NmbrOfMaintComplianceItems"
+              ]
+            },
+            "and",
+            {
+              "ref": [
+                "to_MaintenanceItemReasonText",
+                "MaintenanceItem"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "MaintenanceItem"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "API_MAINTENANCEPLAN.MaintenanceItemReasonText": {
+      "kind": "entity",
+      "@cds.persistence.skip": true,
+      "elements": {
+        "MaintenanceItem": {
+          "key": true,
+          "type": "cds.String",
+          "length": 16
+        },
+        "NmbrOfMaintComplianceItems": {
+          "key": true,
+          "type": "cds.String",
+          "length": 4
+        },
+        "Language": {
+          "key": true,
+          "type": "cds.String",
+          "length": 2
+        },
+        "PlainLongText": {
+          "type": "cds.LargeString"
+        },
+        "to_MaintenanceItem": {
+          "type": "cds.Association",
+          "target": "API_MAINTENANCEPLAN.MaintenanceItem"
+        },
+        "to_MaintenanceItemReason": {
+          "type": "cds.Association",
+          "target": "API_MAINTENANCEPLAN.MaintenanceItemReason"
+        }
+      }
+    },
+    "API_MAINTENANCEPLAN.MaintenanceItemText": {
+      "kind": "entity",
+      "@cds.persistence.skip": true,
+      "elements": {
+        "MaintenanceItem": {
+          "key": true,
+          "type": "cds.String",
+          "length": 16
+        },
+        "Language": {
+          "key": true,
+          "type": "cds.String",
+          "length": 2
+        },
+        "MaintenanceItemLongText": {
+          "type": "cds.LargeString"
+        },
+        "to_MaintenanceItem": {
+          "type": "cds.Association",
+          "target": "API_MAINTENANCEPLAN.MaintenanceItem"
+        }
+      }
+    },
+    "API_MAINTENANCEPLAN.MaintenancePlan": {
+      "kind": "entity",
+      "@cds.persistence.skip": true,
+      "elements": {
+        "MaintenancePlan": {
+          "key": true,
+          "type": "cds.String",
+          "length": 12
+        },
+        "MaintenancePlanDesc": {
+          "type": "cds.String",
+          "length": 40
+        },
+        "CreationDate": {
+          "type": "cds.Date"
+        },
+        "CreatedByUser": {
+          "type": "cds.String",
+          "length": 12
+        },
+        "LastChangeDate": {
+          "type": "cds.Date"
+        },
+        "LastChangedByUser": {
+          "type": "cds.String",
+          "length": 12
+        },
+        "MaintenanceStrategy": {
+          "type": "cds.String",
+          "length": 6
+        },
+        "SchedulingDuration": {
+          "type": "cds.String",
+          "length": 3
+        },
+        "SchedulingDurationUnit": {
+          "type": "cds.String",
+          "length": 3
+        },
+        "NumberOfMaintenanceItems": {
+          "type": "cds.String",
+          "length": 4
+        },
+        "CycleModificationRatio": {
+          "type": "cds.Decimal",
+          "precision": 3,
+          "scale": 2
+        },
+        "MaintPlanSchedgIndicator": {
+          "type": "cds.String",
+          "length": 1
+        },
+        "CallHorizonPercent": {
+          "type": "cds.String",
+          "length": 3
+        },
+        "CallHorizonInDays": {
+          "type": "cds.String",
+          "length": 3
+        },
+        "MaintenanceCallHorizonCalcType": {
+          "type": "cds.String",
+          "length": 1
+        },
+        "AuthorizationGroup": {
+          "type": "cds.String",
+          "length": 4
+        },
+        "MaintenancePlanInternalID": {
+          "type": "cds.String",
+          "length": 22
+        },
+        "MaintenanceCall": {
+          "type": "cds.Integer"
+        },
+        "MaintenancePlanCategory": {
+          "type": "cds.String",
+          "length": 2
+        },
+        "MaintPlanFreeDefinedAttrib": {
+          "type": "cds.String",
+          "length": 20
+        },
+        "BasicStartDate": {
+          "type": "cds.Date"
+        },
+        "SchedulingStartDate": {
+          "type": "cds.Date"
+        },
+        "SchedulingStartTime": {
+          "type": "cds.Time"
+        },
+        "MaintPlanStartCntrReadingValue": {
+          "type": "cds.String",
+          "length": 22
+        },
+        "MaintPlnStrtBufDurationInDays": {
+          "type": "cds.String",
+          "length": 3
+        },
+        "MaintPlanStartBufferUnit": {
+          "type": "cds.String",
+          "length": 3
+        },
+        "FactoryCalendar": {
+          "type": "cds.String",
+          "length": 2
+        },
+        "LateCompletionShiftInPercent": {
+          "type": "cds.String",
+          "length": 3
+        },
+        "LateCompletionTolerancePercent": {
+          "type": "cds.String",
+          "length": 3
+        },
+        "EarlyCompletionShiftInPercent": {
+          "type": "cds.String",
+          "length": 3
+        },
+        "EarlyCompletionTolerancePct": {
+          "type": "cds.String",
+          "length": 3
+        },
+        "PrdcssrCallObjCompltnIsRqd": {
+          "type": "cds.String",
+          "length": 1
+        },
+        "MaintPlanLogicalOperatorCode": {
+          "type": "cds.String",
+          "length": 1
+        },
+        "SchedulingEndDate": {
+          "type": "cds.Date"
+        },
+        "MaintPlanEndCntrReadingValue": {
+          "type": "cds.String",
+          "length": 22
+        },
+        "LastChangeDateTime": {
+          "type": "cds.Timestamp"
+        },
+        "MultipleCounterPlanShiftFactor": {
+          "type": "cds.String",
+          "length": 1
+        },
+        "MaintenanceLeadFloatInDays": {
+          "type": "cds.String",
+          "length": 3
+        },
+        "MaintenancePlanCallObject": {
+          "type": "cds.String",
+          "length": 1
+        },
+        "MaintenancePlanSystemStatus": {
+          "type": "cds.String",
+          "length": 30
+        },
+        "to_Item": {
+          "type": "cds.Association",
+          "target": "API_MAINTENANCEPLAN.MaintenanceItem",
+          "cardinality": {
+            "max": "*"
+          }
+        },
+        "to_LongText": {
+          "type": "cds.Association",
+          "target": "API_MAINTENANCEPLAN.MaintenancePlanText",
+          "cardinality": {
+            "max": "*"
+          },
+          "on": [
+            {
+              "ref": [
+                "to_LongText",
+                "MaintenancePlan"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "MaintenancePlan"
+              ]
+            }
+          ]
+        },
+        "to_MaintenanceCycle": {
+          "type": "cds.Association",
+          "target": "API_MAINTENANCEPLAN.MaintenancePlanCycle",
+          "cardinality": {
+            "max": "*"
+          },
+          "on": [
+            {
+              "ref": [
+                "to_MaintenanceCycle",
+                "MaintenancePlan"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "MaintenancePlan"
+              ]
+            }
+          ]
+        },
+        "to_MaintPlanClfnClass": {
+          "type": "cds.Association",
+          "target": "API_MAINTENANCEPLAN.MaintPlanClfnClass",
+          "cardinality": {
+            "max": "*"
+          }
+        },
+        "to_Schedules": {
+          "type": "cds.Association",
+          "target": "API_MAINTENANCEPLAN.MaintenancePlanSchedule",
+          "cardinality": {
+            "max": "*"
+          }
+        },
+        "to_StrategyCycle": {
+          "type": "cds.Association",
+          "target": "API_MAINTENANCEPLAN.MaintenancePlanStrategyCycle",
+          "cardinality": {
+            "max": "*"
+          }
+        }
+      }
+    },
+    "API_MAINTENANCEPLAN.MaintenancePlanCycle": {
+      "kind": "entity",
+      "@cds.persistence.skip": true,
+      "elements": {
+        "MaintenancePlan": {
+          "key": true,
+          "type": "cds.String",
+          "length": 12
+        },
+        "MaintenancePlanCycle": {
+          "key": true,
+          "type": "cds.String",
+          "length": 2
+        },
+        "MaintenanceStrategy": {
+          "type": "cds.String",
+          "length": 6
+        },
+        "CycleSetSequence": {
+          "type": "cds.String",
+          "length": 2
+        },
+        "MaintPlanCycRcrrcIntervalQty": {
+          "type": "cds.Double"
+        },
+        "MaintPlanCycRcrrcIntervalUnit": {
+          "type": "cds.String",
+          "length": 3
+        },
+        "MaintPlanCycleDesc": {
+          "type": "cds.String",
+          "length": 30
+        },
+        "MeasuringPoint": {
+          "type": "cds.String",
+          "length": 12
+        },
+        "MaintPlanCycleStartOffsetValue": {
+          "type": "cds.Double"
+        },
+        "MaintCycleNextPlndCntrRdng": {
+          "type": "cds.Double"
+        },
+        "MaintenancePlanCycleIsInactive": {
+          "type": "cds.Boolean"
+        },
+        "CycleSetSequenceRepeatFactor": {
+          "type": "cds.String",
+          "length": 2
+        },
+        "to_MaintenancePlan": {
+          "type": "cds.Association",
+          "target": "API_MAINTENANCEPLAN.MaintenancePlan"
+        }
+      }
+    },
+    "API_MAINTENANCEPLAN.MaintenancePlanSchedule": {
+      "kind": "entity",
+      "@cds.persistence.skip": true,
+      "elements": {
+        "MaintenancePlan": {
+          "key": true,
+          "type": "cds.String",
+          "length": 12
+        },
+        "MaintenancePlanCallNumber": {
+          "key": true,
+          "type": "cds.Integer"
+        },
+        "MaintenancePackage": {
+          "key": true,
+          "type": "cds.String",
+          "length": 2
+        },
+        "SchedulingType": {
+          "type": "cds.String",
+          "length": 1
+        },
+        "SchedulingStatus": {
+          "type": "cds.String",
+          "length": 1
+        },
+        "MeasuringPoint": {
+          "type": "cds.String",
+          "length": 12
+        },
+        "MaintenanceTaskPerformanceUnit": {
+          "type": "cds.String",
+          "length": 3
+        },
+        "MaintenanceCallNextPlannedDate": {
+          "type": "cds.Date"
+        },
+        "MaintenanceCallDate": {
+          "type": "cds.Date"
+        },
+        "CompletionDate": {
+          "type": "cds.Date"
+        },
+        "CompletionTime": {
+          "type": "cds.Time"
+        },
+        "CycleSetSequence": {
+          "type": "cds.String",
+          "length": 2
+        },
+        "MaintCallCompltnCntrRdng": {
+          "type": "cds.Double"
+        },
+        "MaintenanceCallIsOutstanding": {
+          "type": "cds.Boolean"
+        },
+        "MaintCallIsInvokedOnPlndDate": {
+          "type": "cds.Boolean"
+        },
+        "MaintCallHorizonIsNotReached": {
+          "type": "cds.Boolean"
+        },
+        "MaintPlanLastScheduledDate": {
+          "type": "cds.Date"
+        },
+        "ReleasedByUserName": {
+          "type": "cds.String",
+          "length": 12
+        },
+        "MaintPlnCnctntdDuePackagesTxt": {
+          "type": "cds.String",
+          "length": 256
+        },
+        "to_MaintenancePlanCallObjects": {
+          "type": "cds.Association",
+          "target": "API_MAINTENANCEPLAN.MaintenancePlanCallObject",
+          "cardinality": {
+            "max": "*"
+          }
+        }
+      }
+    },
+    "API_MAINTENANCEPLAN.MaintenancePlanText": {
+      "kind": "entity",
+      "@cds.persistence.skip": true,
+      "elements": {
+        "MaintenancePlan": {
+          "key": true,
+          "type": "cds.String",
+          "length": 12
+        },
+        "Language": {
+          "key": true,
+          "type": "cds.String",
+          "length": 2
+        },
+        "MaintenancePlanLongText": {
+          "type": "cds.LargeString"
+        },
+        "to_MaintenancePlan": {
+          "type": "cds.Association",
+          "target": "API_MAINTENANCEPLAN.MaintenancePlan"
+        }
+      }
+    },
+    "API_MAINTENANCEPLAN.MaintItemObjectListItem": {
+      "kind": "entity",
+      "@cds.persistence.skip": true,
+      "elements": {
+        "MaintenanceItem": {
+          "key": true,
+          "type": "cds.String",
+          "length": 16
+        },
+        "MaintenanceItemObjectList": {
+          "key": true,
+          "type": "cds.Integer64"
+        },
+        "MaintenanceObjectListItem": {
+          "key": true,
+          "type": "cds.Integer"
+        },
+        "MaintObjectListItemSequence": {
+          "type": "cds.String",
+          "length": 20
+        },
+        "Equipment": {
+          "type": "cds.String",
+          "length": 18
+        },
+        "FunctionalLocationLabelName": {
+          "type": "cds.String",
+          "length": 40
+        },
+        "Assembly": {
+          "type": "cds.String",
+          "length": 18
+        },
+        "Material": {
+          "type": "cds.String",
+          "length": 18
+        },
+        "SerialNumber": {
+          "type": "cds.String",
+          "length": 18
+        },
+        "UniqueItemIdentifier": {
+          "type": "cds.String",
+          "length": 72
+        },
+        "ServiceReferenceProduct": {
+          "type": "cds.String",
+          "length": 18
+        },
+        "MaintObjListEntryIsProcessed": {
+          "type": "cds.Boolean"
+        },
+        "CreationDate": {
+          "type": "cds.Date"
+        },
+        "to_MaintenanceItemTP": {
+          "type": "cds.Association",
+          "target": "API_MAINTENANCEPLAN.MaintenanceItem"
+        }
+      }
+    },
+    "API_MAINTENANCEPLAN.MaintenancePlanCallObject": {
+      "kind": "entity",
+      "@cds.persistence.skip": true,
+      "elements": {
+        "MaintenancePlan": {
+          "key": true,
+          "type": "cds.String",
+          "length": 12
+        },
+        "MaintenancePlanCallNumber": {
+          "key": true,
+          "type": "cds.Integer"
+        },
+        "MaintenanceItem": {
+          "key": true,
+          "type": "cds.String",
+          "length": 16
+        },
+        "MaintenanceOrder": {
+          "type": "cds.String",
+          "length": 12
+        },
+        "MaintenanceNotification": {
+          "type": "cds.String",
+          "length": 12
+        },
+        "ServiceOrder": {
+          "type": "cds.String",
+          "length": 10
+        },
+        "MaintCallHorizonIsNotReached": {
+          "type": "cds.Boolean"
+        },
+        "SchedulingStatus": {
+          "type": "cds.String",
+          "length": 1
+        },
+        "PlannedStartDate": {
+          "type": "cds.Date"
+        },
+        "ReleasedByUserName": {
+          "type": "cds.String",
+          "length": 1
+        }
+      }
+    },
+    "API_MAINTENANCEPLAN.MaintPlanClfnCharValue": {
+      "kind": "entity",
+      "@cds.persistence.skip": true,
+      "elements": {
+        "MaintenancePlan": {
+          "key": true,
+          "type": "cds.String",
+          "length": 12
+        },
+        "ClassType": {
+          "key": true,
+          "type": "cds.String",
+          "length": 3
+        },
+        "ClfnCharcValuePositionNumber": {
+          "key": true,
+          "type": "cds.String",
+          "length": 3
+        },
+        "CharcInternalID": {
+          "key": true,
+          "type": "cds.String",
+          "length": 10
+        },
+        "Characteristic": {
+          "type": "cds.String",
+          "length": 30
+        },
+        "CharcDataType": {
+          "type": "cds.String",
+          "length": 4
+        },
+        "Class": {
+          "type": "cds.String",
+          "length": 18
+        },
+        "ClassInternalID": {
+          "type": "cds.String",
+          "length": 10
+        },
+        "KeyDate": {
+          "type": "cds.Date"
+        },
+        "ChangeNumber": {
+          "type": "cds.String",
+          "length": 12
+        },
+        "CharcValueIntervalType": {
+          "type": "cds.String",
+          "length": 1
+        },
+        "CharcValue": {
+          "type": "cds.String",
+          "length": 70
+        },
+        "CharcFromNumericValue": {
+          "type": "cds.Double"
+        },
+        "CharcFromNumericValueUnit": {
+          "type": "cds.String",
+          "length": 3
+        },
+        "CharcToNumericValue": {
+          "type": "cds.Double"
+        },
+        "CharcToNumericValueUnit": {
+          "type": "cds.String",
+          "length": 3
+        },
+        "CharcFromDecimalValue": {
+          "type": "cds.Decimal",
+          "precision": 31,
+          "scale": 14
+        },
+        "CharcToDecimalValue": {
+          "type": "cds.Decimal",
+          "precision": 31,
+          "scale": 14
+        },
+        "ClfnObjectID": {
+          "type": "cds.String",
+          "length": 90
+        },
+        "CharcFromAmount": {
+          "type": "cds.Decimal",
+          "precision": 23,
+          "scale": 3
+        },
+        "CharcToAmount": {
+          "type": "cds.Decimal",
+          "precision": 23,
+          "scale": 3
+        },
+        "Currency": {
+          "type": "cds.String",
+          "length": 5
+        },
+        "CharcFromDate": {
+          "type": "cds.Date"
+        },
+        "CharcToDate": {
+          "type": "cds.Date"
+        },
+        "CharcFromTime": {
+          "type": "cds.Time"
+        },
+        "CharcToTime": {
+          "type": "cds.Time"
+        },
+        "CharcMaintAuthGrp": {
+          "type": "cds.String",
+          "length": 3
+        },
+        "ClassMaintAuthGrp": {
+          "type": "cds.String",
+          "length": 3
+        },
+        "ClassClassfctnAuthGrp": {
+          "type": "cds.String",
+          "length": 3
+        },
+        "to_Characteristic": {
+          "type": "cds.Association",
+          "target": "API_MAINTENANCEPLAN.MaintPlanClfnClassChar"
+        },
+        "to_MaintPlanClass": {
+          "type": "cds.Association",
+          "target": "API_MAINTENANCEPLAN.MaintPlanClfnClass"
+        }
+      }
+    },
+    "API_MAINTENANCEPLAN.MaintPlanClfnClass": {
+      "kind": "entity",
+      "@cds.persistence.skip": true,
+      "elements": {
+        "MaintenancePlan": {
+          "key": true,
+          "type": "cds.String",
+          "length": 12
+        },
+        "ClassInternalID": {
+          "key": true,
+          "type": "cds.String",
+          "length": 10
+        },
+        "ClassType": {
+          "key": true,
+          "type": "cds.String",
+          "length": 3
+        },
+        "KeyDate": {
+          "type": "cds.Date"
+        },
+        "ChangeNumber": {
+          "type": "cds.String",
+          "length": 12
+        },
+        "ClfnStatus": {
+          "type": "cds.String",
+          "length": 1
+        },
+        "ClassPositionNumber": {
+          "type": "cds.Integer"
+        },
+        "ClassIsStandardClass": {
+          "type": "cds.String",
+          "length": 1
+        },
+        "ClfnObjectInternalID": {
+          "type": "cds.String",
+          "length": 18
+        },
+        "ValidityEndDate": {
+          "type": "cds.Date"
+        },
+        "Class": {
+          "type": "cds.String",
+          "length": 18
+        },
+        "ClassMaintAuthGrp": {
+          "type": "cds.String",
+          "length": 3
+        },
+        "ClassClassfctnAuthGrp": {
+          "type": "cds.String",
+          "length": 3
+        },
+        "MaintenancePlanCallObject": {
+          "type": "cds.String",
+          "length": 1
+        },
+        "AuthorizationGroup": {
+          "type": "cds.String",
+          "length": 4
+        },
+        "to_Characteristic": {
+          "type": "cds.Association",
+          "target": "API_MAINTENANCEPLAN.MaintPlanClfnClassChar",
+          "cardinality": {
+            "max": "*"
+          }
+        }
+      }
+    },
+    "API_MAINTENANCEPLAN.MaintPlanClfnClassChar": {
+      "kind": "entity",
+      "@cds.persistence.skip": true,
+      "elements": {
+        "MaintenancePlan": {
+          "key": true,
+          "type": "cds.String",
+          "length": 12
+        },
+        "ClassInternalID": {
+          "key": true,
+          "type": "cds.String",
+          "length": 10
+        },
+        "CharcInternalID": {
+          "key": true,
+          "type": "cds.String",
+          "length": 10
+        },
+        "Characteristic": {
+          "type": "cds.String",
+          "length": 30
+        },
+        "CharcDataType": {
+          "type": "cds.String",
+          "length": 4
+        },
+        "KeyDate": {
+          "type": "cds.Date"
+        },
+        "ChangeNumber": {
+          "type": "cds.String",
+          "length": 12
+        },
+        "ClassType": {
+          "type": "cds.String",
+          "length": 3
+        },
+        "ClfnObjectID": {
+          "type": "cds.String",
+          "length": 90
+        },
+        "ClassMaintAuthGrp": {
+          "type": "cds.String",
+          "length": 3
+        },
+        "ClassClassfctnAuthGrp": {
+          "type": "cds.String",
+          "length": 3
+        },
+        "CharcMaintAuthGrp": {
+          "type": "cds.String",
+          "length": 3
+        },
+        "to_MaintPlanClass": {
+          "type": "cds.Association",
+          "target": "API_MAINTENANCEPLAN.MaintPlanClfnClass"
+        },
+        "to_Value": {
+          "type": "cds.Association",
+          "target": "API_MAINTENANCEPLAN.MaintPlanClfnCharValue",
+          "cardinality": {
+            "max": "*"
+          }
+        }
+      }
+    },
+    "API_MAINTENANCEPLAN.MaintenancePlanStrategyCycle": {
+      "kind": "entity",
+      "@cds.persistence.skip": true,
+      "elements": {
+        "MaintenancePlan": {
+          "key": true,
+          "type": "cds.String",
+          "length": 12
+        },
+        "MaintenancePlanCycle": {
+          "key": true,
+          "type": "cds.String",
+          "length": 2
+        },
+        "MaintenanceStrategy": {
+          "type": "cds.String",
+          "length": 6
+        },
+        "MaintPlanCycRcrrcIntervalQty": {
+          "type": "cds.Double"
+        },
+        "MaintPlanCycRcrrcIntervalUnit": {
+          "type": "cds.String",
+          "length": 3
+        },
+        "MaintPlanCycleDesc": {
+          "type": "cds.String",
+          "length": 30
+        },
+        "MaintPlanCycleStartOffsetValue": {
+          "type": "cds.Double"
+        }
+      }
+    }
+  }
+}

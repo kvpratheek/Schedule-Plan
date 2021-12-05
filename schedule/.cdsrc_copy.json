@@ -1,0 +1,25 @@
+{
+    "[development]": {
+        "auth": {
+            "passport": {
+                "strategy": "mock",
+                "users": {
+                    "planner@sap.com": {
+                        "password": "initial",
+                        "ID": "planner@sap.com",
+                        "roles": [
+                            "MaintenancePlanner"
+                        ]
+                    },
+                    "manager@sap.com": {
+                        "password": "initial",
+                        "ID": "manager@sap.com",
+                        "roles": [
+                            "MaintenanceManager"
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}

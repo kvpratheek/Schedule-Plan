@@ -1,0 +1,73 @@
+{
+    "name": "schedule",
+    "version": "1.0.0",
+    "description": "A simple CAP project.",
+    "repository": "<Add your repository here>",
+    "license": "UNLICENSED",
+    "private": true,
+    "dependencies": {
+        "@sap/cds": "^5.6.4",
+        "@sap/cloud-sdk-vdm-maintenance-plan-service": "^1.28.2",
+        "express": "^4",
+        "passport": "^0.5.0"
+    },
+    "devDependencies": {
+        "@sap/ux-specification": "^1.90.15",
+        "sqlite3": "^5.0.2"
+    },
+    "scripts": {
+        "start": "cds run",
+        "undeploy": "cf undeploy schedule --delete-services --delete-service-keys"
+    },
+    "eslintConfig": {
+        "extends": "eslint:recommended",
+        "env": {
+            "es2020": true,
+            "node": true,
+            "jest": true,
+            "mocha": true
+        },
+        "globals": {
+            "SELECT": true,
+            "INSERT": true,
+            "UPDATE": true,
+            "DELETE": true,
+            "CREATE": true,
+            "DROP": true,
+            "CDL": true,
+            "CQL": true,
+            "CXL": true,
+            "cds": true
+        },
+        "rules": {
+            "no-console": "off",
+            "require-atomic-updates": "off"
+        }
+    },
+    "cds": {
+        "requires": {
+            "API_MAINTENANCEPLAN": {
+                "kind": "odata-v2",
+                "model": "srv/external/API_MAINTENANCEPLAN",
+                "[development]": {
+                    "credentials": {
+                        "url": "https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/API_MAINTENANCEPLAN"
+                    }
+                },
+                "[production]": {
+                    "credentials": {
+                        "path": "/sap/opu/odata/sap/API_MAINTENANCEPLAN",
+                        "destination": "api-mplan"
+                    }
+                }
+            },
+            "uaa": {
+                "kind": "xsuaa",
+                "credentials": {}
+            }
+        }
+    },
+    "sapux": [
+        "app/schedule"
+    ]
+}
