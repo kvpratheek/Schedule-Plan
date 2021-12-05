@@ -1,8 +1,8 @@
 const cds = require('@sap/cds');
-const api = require('@sap/cloud-sdk-vdm-maintenance-plan-service');
-const { functionImports } = require('@sap/cloud-sdk-vdm-maintenance-plan-service');
 
-module.exports = cds.service.impl(async function() {
+const cloudSDK = require('@sap/cloud-sdk-vdm-maintenance-plan-service');
+
+module.exports = cds.service.impl(async function () {
 
     const plan = await cds.connect.to('API_MAINTENANCEPLAN');
 
@@ -11,20 +11,33 @@ module.exports = cds.service.impl(async function() {
         return plan.run(req.query);
     });
 
-    api.startMaintPlnSchedule
-    this.on('SchedulePlan', async req => {
-        console.log(req.params[0].MaintenancePlan);
-     //   StartMaintPlnScheduleParameters.MaintenancePlan = req.params[0].MaintenancePlan;
-        functionImports.startMaintPlnSchedule()
-        return await functionImports.startMaintPlnSchedule({ MaintenancePlan : req.params[0].MaintenancePlan}).execute({ destinationName:'api-mplan' });
-    }); 
-    
-    this.on('RestartSchedule', async req => {
-        console.log("Restart Called");
-        return await functionImports.restartMaintPlnSchedule({ MaintenancePlan : req.params[0].MaintenancePlan})
-        .addCustomQueryParameters.execute({ destinationName:'api-mplan' });
-    });     
 
-    
+    this.on('SchedulePlan', async req => {
+        const mplanID = req.params[0].MaintenancePlan;
+        console.log("Schedule Started with " + mplanID);
+        try {
+            const entity = await cloudSDK.MaintenancePlan.requestBuilder().getByKey(mplanID).execute({ destinationName: 'api-mplan' });
+            console.log(entity.versionIdentifier + "The call is " + entity.maintenanceCall + "of Plan " + entity.maintenancePlan);
+            const schedule = await cloudSDK.functionImports.startMaintPlnSchedule({ maintenancePlan: mplanID })
+                .addCustomHeaders({ 'if-match': entity.versionIdentifier }).execute({ destinationName: 'api-mplan' });
+            console.log("Schedule" + schedule);
+            req.reply(entity);
+        } catch (error) {
+            req.reject( "Error Occured. Check if Maintenance Plan is already Scheduled.")
+            return;
+        }
+        
+    });
+
+    this.on('RestartSchedule', async req => {
+        const mplanID = req.params[0].MaintenancePlan;
+        console.log("Schedule Started with " + mplanID);
+        const entity = await cloudSDK.MaintenancePlan.requestBuilder().getByKey(mplanID).execute({ destinationName: 'api-mplan' });
+        console.log(entity.versionIdentifier + "The call is " + entity.maintenanceCall + "of Plan " + entity.maintenancePlan);
+        return await cloudSDK.functionImports.startMaintPlnSchedule({ maintenancePlan: mplanID })
+            .addCustomHeaders({ 'if-match': entity.versionIdentifier }).execute({ destinationName: 'api-mplan' });
+    });
+
+
 
 });

@@ -1,13 +1,28 @@
 using MaintenancePlan_API as service from '../../srv/plan-service';
 
 annotate service.MaintenancePlan with 
-@ UI : { LineItem  : [
+@ UI : { 
+    
+    SelectionFields  : [ 
+    {
+        $value: MaintenancePlan
+    }
+        
+    ],
+    
+    LineItem  : [
     {
         $Type : 'UI.DataFieldForAction',
         Action : 'MaintenancePlan_API.SchedulePlan',
         Label : 'Schedule'
     
-    },   
+    },  
+    {
+        $Type : 'UI.DataFieldForAction',
+        Action : 'MaintenancePlan_API.RestartSchedule',
+        Label : 'Re-Schedule'
+    
+    },       
     {
         $Type : 'UI.DataField',
         Value : MaintenancePlan
