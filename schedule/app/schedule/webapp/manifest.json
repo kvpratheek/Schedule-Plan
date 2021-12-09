@@ -109,14 +109,8 @@
                     "options": {
                         "settings": {
                             "entitySet": "MaintenancePlan",
-                            "variantManagement": "Page",
-                            "navigation": {
-                                "MaintenancePlan": {
-                                    "detail": {
-                                        "route": "MaintenancePlanObjectPage"
-                                    }
-                                }
-                            }
+                            "variantManagement": "Page"
+
                         }
                     }
                 },

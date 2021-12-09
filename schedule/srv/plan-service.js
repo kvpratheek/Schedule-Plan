@@ -1,4 +1,5 @@
 const cds = require('@sap/cds');
+const val = require('./Validations')
 
 const moment = require('moment');
 
@@ -16,15 +17,29 @@ module.exports = cds.service.impl(async function () {
 
     this.on('SchedulePlan', async req => {
         const mplanID = req.params[0].MaintenancePlan;
+
+        req.data.maintenancePlan = mplanID;
+
+         if(req.data.schedulingStartDate != null){
+             let dateVal = String(req.data.schedulingStartDate);
+              req.data.schedulingStartDate = moment(dateVal, 'YYYY-MM-DD');   //dateVal; 
+         }       
+
         try {
             const entity = await cloudSDK.MaintenancePlan.requestBuilder().getByKey(mplanID).execute({ destinationName: 'api-mplan' });
-            console.log(entity.versionIdentifier + "The call is " + entity.maintenanceCall + "of Plan " + entity.maintenancePlan);
-            const schedule = await cloudSDK.functionImports.startMaintPlnSchedule({ maintenancePlan: mplanID })
+
+            const result = val.validateSchedule(entity,req.data); 
+
+            if( result.error === true){
+                return req.reject(400, result.message);
+            }
+            const schedule = await cloudSDK.functionImports.startMaintPlnSchedule(result.data)
                 .addCustomHeaders({ 'if-match': entity.versionIdentifier }).execute({ destinationName: 'api-mplan' });
             console.log("Schedule" + schedule);
+
             return entity;
         } catch (error) {
-            return req.reject(400, 'Error Occured. Check if Maintenance Plan is already Scheduled.');
+            return req.reject(400, error);
         }
         
     });
@@ -36,10 +51,17 @@ module.exports = cds.service.impl(async function () {
              let dateVal = String(req.data.schedulingStartDate);
               req.data.schedulingStartDate = moment(dateVal, 'YYYY-MM-DD');   //dateVal; 
          }
+
+         if(req.data.maintPlanStartCntrReadingValue == ''){
+            req.data.maintPlanStartCntrReadingValue = null;
+         }
         try {
         const entity = await cloudSDK.MaintenancePlan.requestBuilder().getByKey(mplanID).execute({ destinationName: 'api-mplan' });
-        console.log("Read Success");
-        const restart = await cloudSDK.functionImports.restartMaintPlnSchedule(req.data)
+        const result = val.validateRestart(entity,req.data); 
+        if( result.error === true){
+            return req.reject(400, result.message);
+        }
+        const restart = await cloudSDK.functionImports.restartMaintPlnSchedule(result.data)
                                .addCustomHeaders({ 'if-match': entity.versionIdentifier }).execute({ destinationName: 'api-mplan' });
         console.log(JSON.stringify(restart));                       
         return entity;
